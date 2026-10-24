@@ -1,0 +1,283 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg:#050916; --panel:#0d1428; --panel2:#131d35;
+  --text:#f6f3ff; --muted:#a7b1cf; --purple:#a855f7;
+  --gold:#f6c978; --border:#25304c;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Cairo,sans-serif}
+button,input,select{font:inherit}
+button,a{cursor:pointer}
+a{color:inherit;text-decoration:none}
+button{color:inherit}
+[hidden]{display:none!important}
+.wrap{max-width:1450px;margin:auto;padding:0 4%}
+header{position:sticky;top:0;z-index:10;background:#070b18ed;backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:800;color:#c084fc}
+.logo-icon{font-size:31px}
+.logo small{display:block;font-size:10px;color:var(--muted);font-weight:400}
+nav{display:flex;align-items:center;gap:23px;font-size:14px}
+nav a{color:var(--muted)}
+nav a:hover{color:#c084fc}
+.search{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--border);padding:9px 13px;border-radius:25px;min-width:200px}
+.search input{background:transparent;border:0;outline:0;color:var(--text);width:100%;min-width:0}
+.round{background:var(--panel);border:1px solid var(--border);border-radius:50%;width:40px;height:40px}
+.hero{min-height:335px;margin:24px 0 40px;border:1px solid #30234d;border-radius:22px;overflow:hidden;position:relative;display:flex;align-items:center;background:linear-gradient(90deg,#050916 1%,#080b18e8 33%,#080b1860 100%),url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=85') center/cover}
+.hero-content{padding:35px 5%;max-width:570px;position:relative}
+.eyebrow{color:var(--gold);font-size:13px}
+.hero h1{font-size:clamp(37px,5vw,62px);line-height:1.35;margin:10px 0}
+.hero h1 span{color:#bd78ff}
+.hero p{color:#d2d7e8;line-height:2}
+.primary{background:linear-gradient(110deg,#7739ed,#b14ee8);color:white;border:0;border-radius:12px;padding:12px 22px;font-weight:700;display:inline-block}
+.primary:hover{filter:brightness(1.15)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:25px;align-items:start}
+.section{margin-bottom:40px}
+.heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}
+.heading h2{font-size:23px;margin:0}
+.muted{color:var(--muted);font-size:13px}
+.categories{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px}
+.cat{background:linear-gradient(145deg,#111a30,#0b1122);border:1px solid var(--border);border-radius:13px;padding:12px 4px;min-height:85px;text-align:center;font-size:12px}
+.cat span{display:block;font-size:24px;margin-bottom:3px}
+.cat.active,.cat:hover{border-color:var(--purple);background:#281640}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.book{border:1px solid var(--border);background:linear-gradient(145deg,#11192d,#0a1020);border-radius:14px;padding:9px;min-width:0;transition:.2s}
+.book:hover{transform:translateY(-4px);border-color:#8e55d9}
+.cover{height:190px;border-radius:9px;position:relative;overflow:hidden;background:#201633}
+.cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.book:hover .cover img{transform:scale(1.05)}
+.cover:after{content:"";position:absolute;inset:25% 0 0;background:linear-gradient(transparent,#050816d9)}
+.heart{position:absolute;z-index:2;top:8px;left:8px;border:1px solid #ffffff40;background:#090c1bbd;border-radius:50%;width:32px;height:32px;font-size:17px}
+.heart.saved{color:#ff6db3}
+.book h3{font-size:14px;margin:10px 2px 2px}
+.book p{font-size:11px;color:var(--muted);margin:2px}
+.tag{display:inline-block;background:#38215c;color:#dcb8ff;padding:2px 9px;border-radius:20px;font-size:10px;margin:7px 0}
+.read{display:block;width:100%;padding:8px;border:0;border-radius:8px;background:#853fe5;color:white;font-weight:700;font-size:12px}
+.side{background:linear-gradient(160deg,#10182c,#0a1020);border:1px solid var(--border);border-radius:16px;padding:15px;position:sticky;top:95px}
+.side h3{margin:0 0 12px;font-size:17px}
+.popular{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--border);font-size:12px}
+.popular img{width:43px;height:55px;object-fit:cover;border-radius:6px}
+.rank{color:#d879ff;font-weight:800}
+.popular small{display:block;color:var(--muted)}
+.empty{text-align:center;color:var(--muted);padding:25px;grid-column:1/-1}
+footer{margin-top:30px;padding:30px 0;border-top:1px solid var(--border);text-align:center;background:radial-gradient(ellipse at bottom,#28113e,#050916 70%);color:var(--muted)}
+.reader{position:fixed;inset:0;z-index:30;background:#030611ed;overflow:auto;padding:20px}
+.reader-inner{max-width:750px;margin:auto;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:25px}
+.reader-bar{display:flex;justify-content:space-between;align-items:center}
+.reader-text{font-size:18px;line-height:2.3;white-space:pre-line}
+.reader-buttons{display:flex;justify-content:space-between;gap:10px;margin-top:25px}
+.reader-buttons button{padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--panel2)}
+body.light{--bg:#f5f2fb;--panel:#fff;--panel2:#eee7f7;--text:#251735;--muted:#6d637e;--border:#ded4eb}
+body.light header{background:#f8f5f9ed}
+body.light .hero{background-image:linear-gradient(90deg,#090916 1%,#090b18dd 40%,#090b1840 100%),url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=85')}
+body.light .book,body.light .cat,body.light .side{background:var(--panel)}
+@media(max-width:1000px){
+ .layout{grid-template-columns:1fr}
+ .side{position:static;display:none}
+ .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .categories{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .search{order:3;flex-basis:100%}
+ .nav{flex-wrap:wrap;padding:12px 0}
+}
+@media(max-width:560px){
+ .wrap{padding:0 4%}
+ nav{order:4;width:100%;justify-content:space-between;gap:8px;font-size:12px}
+ .hero{min-height:285px}
+ .hero-content{padding:25px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .cover{height:175px}
+ .categories{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .heading h2{font-size:19px}
+ .reader-inner{padding:17px}
+}
+</style>
+
+<header>
+  <div class="wrap nav">
+    <a href="#home" class="logo"><span class="logo-icon">📚</span><span>رِوايَتي<small>عالمك بين السطور</small></span></a>
+    <label class="search">⌕ <input id="search" placeholder="ابحث عن رواية أو كاتب..."></label>
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#library">الروايات</a>
+      <a href="#categories">التصنيفات</a>
+      <a href="#favorites">♥ مكتبتي</a>
+    </nav>
+    <button class="round" id="theme" aria-label="تغيير المظهر">☾</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="eyebrow">✦ مكتبتك المجانية</span>
+      <h1>كل حكاية...<br><span>عالم جديد</span></h1>
+      <p>اكتشف روايات تأخذك بعيدًا، وشخصيات تعيش معك، وحكايات لا تُنسى.</p>
+      <a class="primary" href="#library">استكشف الروايات ←</a>
+    </div>
+  </section>
+
+  <div class="layout">
+    <main>
+      <section class="section" id="categories">
+        <div class="heading"><h2>✦ تصفّح التصنيفات</h2></div>
+        <div class="categories" id="cats"></div>
+      </section>
+
+      <section class="section" id="library">
+        <div class="heading"><h2 id="listTitle">✨ أحدث الروايات</h2><span class="muted" id="count"></span></div>
+        <div class="grid" id="books"></div>
+        <p class="empty" id="noBooks" hidden>مفيش نتائج. جرّب بحثًا مختلفًا.</p>
+      </section>
+
+      <section class="section" id="favorites">
+        <div class="heading"><h2>♥ رواياتي المفضلة</h2></div>
+        <div class="grid" id="saved"></div>
+        <p class="empty" id="noSaved">لسه ما أضفتش روايات للمفضلة.</p>
+      </section>
+    </main>
+
+    <aside class="side">
+      <h3>🔥 الأكثر قراءة</h3>
+      <div id="popular"></div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="logo" style="justify-content:center">📚 رِوايَتي</div>
+  <p>كل حكاية تبدأ بصفحة ✦</p>
+  <small>مكتبة تجريبية مجانية — قصص قصيرة أصلية.</small>
+</footer>
+
+<div class="reader" id="reader" hidden>
+  <div class="reader-inner" dir="rtl">
+    <div class="reader-bar">
+      <span class="muted" id="progress"></span>
+      <button class="round" id="close">✕</button>
+    </div>
+    <h2 id="readerTitle"></h2>
+    <p class="muted" id="readerGenre"></p>
+    <hr style="border-color:var(--border)">
+    <h3 id="chapterTitle"></h3>
+    <div class="reader-text" id="readerText"></div>
+    <div class="reader-buttons">
+      <button id="prev">الفصل السابق</button>
+      <button class="primary" id="next">الفصل التالي ←</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const stories = [
+ {id:1,title:"مدينة خلف الضباب",genre:"غموض",icon:"🌫️",img:"photo-1519608487953-e999c86e7455",chapters:[
+  ["الفصل الأول: المدينة الصامتة","وصل آدم إلى المدينة عند الغروب. كان الضباب يغطي الشوارع، والنوافذ مغلقة كأن الجميع يخفي سرًا قديمًا.\n\nفي نهاية الطريق، لمح مصباحًا مضيئًا داخل مكتبة مهجورة. اقترب من الباب فوجد ورقة صغيرة كُتب عليها: لقد تأخرت كثيرًا.\n\nلم يكن آدم يعرف أحدًا في المدينة، فمن الذي كان ينتظره؟"],
+  ["الفصل الثاني: الرسالة","دخل آدم المكتبة بحذر. كانت الكتب مرتبة بعناية غريبة، وفوق المكتب ساعة متوقفة عند منتصف الليل.\n\nوجد خريطة للمدينة وعلامة حمراء عند المنزل المقابل للمكتبة. قبل أن يغادر، سمع صوتًا خافتًا يقول: لا تفتح الباب قبل أن تعرف الحقيقة."]]},
+ {id:2,title:"أجنحة من نور",genre:"فانتازيا",icon:"✨",img:"photo-1518709268805-4e9042af9f23",chapters:[
+  ["الفصل الأول: البلورة","في قرية صغيرة بين الجبال، عاشت ليان تحلم بالطيران فوق الغيوم.\n\nفي يوم ممطر، وجدت بلورة زرقاء قرب النهر. وما إن لمستها حتى ظهرت خريطة مضيئة في الهواء، تقود إلى قصر لم يسمع به أحد من قبل."],
+  ["الفصل الثاني: الطريق المجهول","حملت ليان البلورة وبدأت رحلتها عند الفجر. عند أول جسر، ظهر طائر ذهبي وأخبرها أن البلورة لا تضيء إلا لمن يبحث عن الحقيقة.\n\nأدركت ليان أن مغامرتها الحقيقية قد بدأت."]]},
+ {id:3,title:"رسائل لم تصل",genre:"رومانسية",icon:"💌",img:"photo-1516589178581-6cd7833ae3b2",chapters:[
+  ["الفصل الأول: صندوق البريد","كانت مريم تمر كل صباح أمام مكتب البريد القديم. في أحد الأيام، وجدت رسالة بلا اسم مرسل، وعلى ظرفها عبارة: إلى الشخص الذي ما زال يؤمن بالبدايات.\n\nفتحت الرسالة وقرأت حكاية عن شخص ينتظر فرصة ليعتذر."],
+  ["الفصل الثاني: موعد في المقهى","في الرسالة التالية، كان هناك عنوان مقهى صغير وموعد عند الخامسة.\n\nذهبت مريم بدافع الفضول وجلست قرب النافذة. لم يظهر صاحب الرسائل في ذلك اليوم، لكن النادل سلّمها ظرفًا جديدًا."]]},
+ {id:4,title:"البيت رقم سبعة",genre:"رعب",icon:"🏚️",img:"photo-1518709268805-4e9042af9f23",chapters:[
+  ["الفصل الأول: المفتاح","انتقلت عائلة سامر إلى منزل قديم في شارع هادئ. كان البيت واسعًا، لكن بابه السابع ظل مغلقًا منذ اليوم الأول.\n\nفي الليلة الثالثة، وجد سامر مفتاحًا فوق مكتبه، رغم أنه لم يره من قبل."],
+  ["الفصل الثاني: خلف الباب","أدار سامر المفتاح، فانفتح الباب على غرفة خالية إلا من مرآة وصندوق خشبي.\n\nعلى المرآة ظهرت كتابة قديمة: كل ما تبحث عنه تركته هنا."]]},
+ {id:5,title:"آخر محطة",genre:"مغامرات",icon:"🚂",img:"photo-1473448912268-2022ce9509d8",chapters:[
+  ["الفصل الأول: تذكرة واحدة","وجد يوسف تذكرة قطار قديمة في كتاب اشتراه من سوق المستعمل. كان موعد الرحلة مكتوبًا بتاريخ اليوم.\n\nفي المحطة، اكتشف قطارًا لا يظهر على لوحة المواعيد، وعلى بابه عبارة: رحلة إلى ما لم يحدث."],
+  ["الفصل الثاني: العربة الأخيرة","تحرك القطار بهدوء، وبدأت المشاهد خلف النوافذ تتغير.\n\nفي العربة الأخيرة وجد يوسف مقعدًا يحمل اسمه، وبجواره دفتر مفتوح على صفحة فارغة تنتظر أول كلمة."]]},
+ {id:6,title:"شفرة القمر",genre:"خيال علمي",icon:"🌙",img:"photo-1446776811953-b23d57bd21aa",chapters:[
+  ["الفصل الأول: الإشارة","في محطة فضائية تدور حول الأرض، التقطت المهندسة نور إشارة متكررة من الجانب المظلم للقمر.\n\nبعد ساعات من التحليل، ظهرت على الشاشة إحداثيات لموقع لم ترصده أي بعثة سابقة."],
+  ["الفصل الثاني: الاكتشاف","هبط الفريق قرب الإحداثيات. تحت طبقة رقيقة من الغبار، ظهرت لوحة معدنية تحمل الرمز نفسه الموجود في الإشارة.\n\nاشتغلت الشاشة برسالة قصيرة: أخيرًا، وصل أحدكم."]]},
+ {id:7,title:"دفتر الأيام",genre:"دراما",icon:"📔",img:"photo-1474932430478-367dbb6832c1",chapters:[
+  ["الفصل الأول: الصفحة الأولى","بدأت سلمى تكتب في دفترها كل مساء، لا لتتذكر الأحداث الكبيرة، بل لتحتفظ بالتفاصيل الصغيرة.\n\nبعد شهر، اكتشفت أن أكثر ما تغير لم يكن العالم حولها، بل الطريقة التي تراه بها."],
+  ["الفصل الثاني: قرار صغير","فتحت سلمى الدفتر على صفحة جديدة وكتبت هدفًا واحدًا للأسبوع.\n\nأغلقت الدفتر وهي تعرف أن بعض النهايات ليست إلا بداية فصل جديد."]]}
+];
+
+const genres=[["الكل","📚"],["غموض","🔎"],["فانتازيا","✨"],["رومانسية","💗"],["رعب","👻"],["مغامرات","🧭"],["خيال علمي","🚀"],["دراما","🎭"]];
+let category="الكل",query="",current=null,chapter=0;
+let favorites=[];
+try{favorites=JSON.parse(localStorage.getItem("riwayati-favs")||"[]");if(!Array.isArray(favorites))favorites=[]}catch{favorites=[]}
+
+const $=s=>document.querySelector(s);
+const imageUrl=book=>`https://images.unsplash.com/${book.img}?auto=format&fit=crop&w=500&h=700&q=80`;
+
+function renderCategories(){
+ $("#cats").innerHTML=genres.map(([name,icon])=>`<button class="cat ${category===name?"active":""}" data-cat="${name}"><span>${icon}</span>${name}</button>`).join("");
+}
+
+function card(book){
+ return `<article class="book">
+  <div class="cover">
+   <img src="${imageUrl(book)}" alt="${book.title}" loading="lazy">
+   <button class="heart ${favorites.includes(book.id)?"saved":""}" data-fav="${book.id}" aria-label="المفضلة">${favorites.includes(book.id)?"♥":"♡"}</button>
+  </div>
+  <h3>${book.title}</h3><p>قصة أصلية تجريبية</p>
+  <span class="tag">${book.genre}</span>
+  <button class="read" data-read="${book.id}">اقرأ الآن ←</button>
+ </article>`;
+}
+
+function renderBooks(){
+ const found=stories.filter(b=>(category==="الكل"||b.genre===category)&&(`${b.title} ${b.genre}`).includes(query));
+ $("#books").innerHTML=found.map(card).join("");
+ $("#count").textContent=`${found.length} رواية`;
+ $("#noBooks").hidden=found.length>0;
+ $("#listTitle").textContent=category==="الكل"?"✨ أحدث الروايات":category;
+}
+
+function renderFavorites(){
+ const saved=stories.filter(b=>favorites.includes(b.id));
+ $("#saved").innerHTML=saved.map(card).join("");
+ $("#noSaved").hidden=saved.length>0;
+}
+
+function renderPopular(){
+ $("#popular").innerHTML=stories.slice(0,5).map((b,i)=>`<div class="popular"><span class="rank">${i+1}</span><img src="${imageUrl(b)}" alt=""><div>${b.title}<small>${b.genre}</small></div></div>`).join("");
+}
+
+function render(){renderCategories();renderBooks();renderFavorites();renderPopular()}
+
+$("#cats").addEventListener("click",e=>{
+ const b=e.target.closest("[data-cat]");if(!b)return;
+ category=b.dataset.cat;renderCategories();renderBooks();
+});
+
+$("#search").addEventListener("input",e=>{query=e.target.value.trim();renderBooks()});
+
+document.addEventListener("click",e=>{
+ const fav=e.target.closest("[data-fav]");
+ const read=e.target.closest("[data-read]");
+ if(fav){
+  const id=Number(fav.dataset.fav);
+  favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];
+  try{localStorage.setItem("riwayati-favs",JSON.stringify(favorites))}catch{}
+  renderFavorites();renderBooks();
+ }
+ if(read)openReader(Number(read.dataset.read));
+});
+
+function openReader(id){
+ current=stories.find(b=>b.id===id);chapter=0;
+ if(!current)return;
+ $("#reader").hidden=false;document.body.style.overflow="hidden";renderChapter();
+}
+function renderChapter(){
+ const c=current.chapters[chapter];
+ $("#readerTitle").textContent=current.title;
+ $("#readerGenre").textContent=current.genre;
+ $("#progress").textContent=`الفصل ${chapter+1} من ${current.chapters.length}`;
+ $("#chapterTitle").textContent=c[0];
+ $("#readerText").textContent=c[1];
+ $("#prev").disabled=chapter===0;
+ $("#next").textContent=chapter===current.chapters.length-1?"انتهت العينة":"الفصل التالي ←";
+}
+function closeReader(){$("#reader").hidden=true;document.body.style.overflow=""}
+$("#close").addEventListener("click",closeReader);
+$("#prev").addEventListener("click",()=>{if(chapter>0){chapter--;renderChapter()}});
+$("#next").addEventListener("click",()=>{if(chapter<current.chapters.length-1){chapter++;renderChapter()}});
+$("#theme").addEventListener("click",()=>document.body.classList.toggle("light"));
+render();
+</script>
