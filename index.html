@@ -401,5 +401,368 @@ renderBooks();
   console.info("تمت إضافة " + additions.length + " رواية إلى رِوايَتي.");
 })();
 </script>
+  
+<!-- ===== قسم الرياضة: رِوايَتي ===== -->
+<section id="riwayati-sports" dir="rtl">
+  <style>
+    #riwayati-sports {
+      --sp-bg: #101426;
+      --sp-card: #191e35;
+      --sp-gold: #e6bf65;
+      --sp-text: #f5f2e9;
+      --sp-muted: #b9bfd2;
+      background: var(--sp-bg);
+      color: var(--sp-text);
+      padding: 28px 16px 40px;
+      margin: 30px auto;
+      border-radius: 20px;
+      font-family: inherit;
+    }
+    #riwayati-sports * { box-sizing: border-box; }
+    #riwayati-sports .sp-hero {
+      padding: 25px 18px;
+      border: 1px solid #54472f;
+      border-radius: 18px;
+      text-align: center;
+      background: linear-gradient(135deg,#252345,#111729 75%);
+    }
+    #riwayati-sports h2, #riwayati-sports h3 {
+      color: var(--sp-gold);
+      margin-top: 0;
+    }
+    #riwayati-sports p { line-height: 1.9; }
+    #riwayati-sports .sp-muted { color: var(--sp-muted); }
+    #riwayati-sports .sp-search {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    #riwayati-sports input,
+    #riwayati-sports textarea,
+    #riwayati-sports select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #444a65;
+      border-radius: 10px;
+      background: #0e1221;
+      color: white;
+      font: inherit;
+    }
+    #riwayati-sports .sp-search input { flex: 1 1 220px; }
+    #riwayati-sports button {
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 15px;
+      background: var(--sp-gold);
+      color: #171728;
+      font: inherit;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #riwayati-sports button:focus-visible,
+    #riwayati-sports input:focus-visible,
+    #riwayati-sports textarea:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 3px;
+    }
+    #riwayati-sports .sp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 14px;
+    }
+    #riwayati-sports .sp-card {
+      background: var(--sp-card);
+      border: 1px solid #303650;
+      border-radius: 14px;
+      padding: 17px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    #riwayati-sports .sp-card h3 { margin-bottom: 0; }
+    #riwayati-sports .sp-tag {
+      color: var(--sp-gold);
+      font-size: .85rem;
+    }
+    #riwayati-sports .sp-card button { margin-top: auto; }
+    #riwayati-sports .sp-reader {
+      margin-top: 24px;
+      background: #191e35;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid #49405a;
+    }
+    #riwayati-sports .sp-chapter {
+      border-top: 1px solid #363c55;
+      padding: 12px 0;
+    }
+    #riwayati-sports .sp-chapter p { white-space: pre-line; }
+    #riwayati-sports .sp-form {
+      margin-top: 28px;
+      padding: 20px;
+      border-radius: 16px;
+      background: #191e35;
+    }
+    #riwayati-sports .sp-form label {
+      display: block;
+      margin: 12px 0 6px;
+    }
+    #riwayati-sports .sp-note {
+      font-size: .88rem;
+      color: var(--sp-muted);
+    }
+  </style>
+
+  <div class="sp-hero">
+    <div style="font-size:42px">⚽ 🏆 ⚽</div>
+    <h2>أساطير المستطيل الأخضر</h2>
+    <p>من البدايات الأولى إلى أكبر الملاعب في العالم.</p>
+    <p class="sp-muted">
+      سير رياضية وفصول عن أساطير الماضي ونجوم الحاضر،
+      مع التمييز بين الحقائق الموثقة والتحليل الرياضي.
+    </p>
+  </div>
+
+  <div class="sp-search">
+    <input id="spSearch" type="search"
+      placeholder="ابحث عن لاعب... مثل ميسي أو صلاح"
+      aria-label="ابحث عن لاعب">
+    <select id="spEra" aria-label="فلترة اللاعبين">
+      <option value="all">كل الأجيال</option>
+      <option value="legend">أساطير زمان</option>
+      <option value="modern">نجوم العصر الحديث</option>
+    </select>
+  </div>
+
+  <p id="spCount" class="sp-muted" aria-live="polite"></p>
+  <div id="spBooks" class="sp-grid"></div>
+  <div id="spReader" class="sp-reader" hidden></div>
+
+  <div class="sp-form">
+    <h2>💡 تحب نعمل رواية عن إيه؟</h2>
+    <p>اقترح لاعبًا أو مباراة تاريخية أو حكاية كروية تحب نكتب عنها.</p>
+
+    <form id="spSuggest">
+      <label for="spName">اسم اللاعب أو موضوع الرواية</label>
+      <input id="spName" required maxlength="100"
+        placeholder="مثال: محمد أبو تريكة">
+
+      <label for="spTopic">إيه اللي تحب تعرفه؟</label>
+      <select id="spTopic">
+        <option>حياة اللاعب من الطفولة</option>
+        <option>بدايته مع كرة القدم</option>
+        <option>مسيرته مع الأندية</option>
+        <option>مشواره مع المنتخب</option>
+        <option>أهم المباريات والبطولات</option>
+        <option>كل ما سبق</option>
+      </select>
+
+      <label for="spDetails">تفاصيل إضافية (اختياري)</label>
+      <textarea id="spDetails" rows="3" maxlength="500"
+        placeholder="اكتب اقتراحك هنا..."></textarea>
+
+      <button type="submit">حفظ الاقتراح</button>
+      <p id="spFormMsg" class="sp-note" aria-live="polite"></p>
+    </form>
+    <p class="sp-note">
+      ملاحظة: النسخة دي تحفظ الاقتراح على نفس الجهاز والمتصفح فقط؛
+      إرسال الاقتراحات إلى صاحب الموقع يحتاج ربط النموذج بخدمة استقبال.
+    </p>
+  </div>
+
+  <script>
+  (() => {
+    const root = document.getElementById("riwayati-sports");
+    if (!root || root.dataset.ready === "yes") return;
+    root.dataset.ready = "yes";
+
+    const players = [
+      ["بيليه","البرازيل","legend"],
+      ["دييغو مارادونا","الأرجنتين","legend"],
+      ["يوهان كرويف","هولندا","legend"],
+      ["فرانز بيكنباور","ألمانيا","legend"],
+      ["زين الدين زيدان","فرنسا","legend"],
+      ["رونالدو نازاريو","البرازيل","legend"],
+      ["رونالدينيو","البرازيل","legend"],
+      ["روبرتو باجيو","إيطاليا","legend"],
+      ["باولو مالديني","إيطاليا","legend"],
+      ["ألفريدو دي ستيفانو","الأرجنتين وإسبانيا","legend"],
+      ["فيرينتس بوشكاش","المجر","legend"],
+      ["جورج بست","أيرلندا الشمالية","legend"],
+      ["ماركو فان باستن","هولندا","legend"],
+      ["روماريو","البرازيل","legend"],
+      ["غابرييل باتيستوتا","الأرجنتين","legend"],
+      ["تييري هنري","فرنسا","legend"],
+      ["ريفالدو","البرازيل","legend"],
+      ["فرانشيسكو توتي","إيطاليا","legend"],
+      ["ستيفن جيرارد","إنجلترا","legend"],
+      ["فرانك لامبارد","إنجلترا","legend"],
+      ["ديدييه دروغبا","كوت ديفوار","legend"],
+      ["صامويل إيتو","الكاميرون","legend"],
+      ["إيكر كاسياس","إسبانيا","legend"],
+      ["تشافي هيرنانديز","إسبانيا","legend"],
+      ["أندريس إنييستا","إسبانيا","legend"],
+      ["ليونيل ميسي","الأرجنتين","modern"],
+      ["كريستيانو رونالدو","البرتغال","modern"],
+      ["محمد صلاح","مصر","modern"],
+      ["نيمار","البرازيل","modern"],
+      ["لوكا مودريتش","كرواتيا","modern"],
+      ["كيليان مبابي","فرنسا","modern"],
+      ["إيرلينغ هالاند","النرويج","modern"],
+      ["كيفن دي بروين","بلجيكا","modern"],
+      ["هاري كين","إنجلترا","modern"],
+      ["روبرت ليفاندوفسكي","بولندا","modern"],
+      ["كريم بنزيما","فرنسا","modern"],
+      ["فينيسيوس جونيور","البرازيل","modern"],
+      ["جود بيلينغهام","إنجلترا","modern"],
+      ["سيرجيو راموس","إسبانيا","modern"],
+      ["أنطوان غريزمان","فرنسا","modern"],
+      ["ساديو ماني","السنغال","modern"],
+      ["رياض محرز","الجزائر","modern"],
+      ["أشرف حكيمي","المغرب","modern"],
+      ["عمر مرموش","مصر","modern"],
+      ["روبرت كارلوس","البرازيل","legend"],
+      ["راؤول غونزاليس","إسبانيا","legend"],
+      ["أبو تريكة","مصر","legend"],
+      ["محمود الخطيب","مصر","legend"],
+      ["حسام حسن","مصر","legend"],
+      ["علي الحبسي","عُمان","legend"]
+    ];
+
+    const books = document.getElementById("spBooks");
+    const search = document.getElementById("spSearch");
+    const era = document.getElementById("spEra");
+    const count = document.getElementById("spCount");
+    const reader = document.getElementById("spReader");
+
+    // فصول وخريطة تحرير لكل سيرة. تُملأ بالنصوص الموثقة تدريجيًا.
+    const chapterTitles = [
+      "الميلاد والطفولة والبيئة التي نشأ فيها",
+      "أول كرة وأولى خطوات الحلم",
+      "الأكاديمية وبداية الطريق الاحترافي",
+      "الفرصة الكبيرة وأول اختبار حقيقي",
+      "الانتقال إلى مرحلة جديدة في المسيرة",
+      "المباريات التي صنعت اسمه",
+      "النجاحات والإخفاقات والدروس المستفادة",
+      "المنتخب الوطني والبطولات الكبرى",
+      "أسلوب اللعب وتأثيره في كرة القدم",
+      "أحدث فصل موثق في مسيرته"
+    ];
+
+    function renderBooks() {
+      const q = search.value.trim().toLocaleLowerCase("ar");
+      const selectedEra = era.value;
+      const filtered = players.filter(p =>
+        p[0].toLocaleLowerCase("ar").includes(q) &&
+        (selectedEra === "all" || p[2] === selectedEra)
+      );
+
+      count.textContent = "عدد اللاعبين المعروضين: " + filtered.length;
+      books.replaceChildren();
+
+      filtered.forEach(p => {
+        const card = document.createElement("article");
+        card.className = "sp-card";
+
+        const title = document.createElement("h3");
+        title.textContent = p[0];
+
+        const tag = document.createElement("span");
+        tag.className = "sp-tag";
+        tag.textContent = p[2] === "legend" ? "أسطورة من الأجيال السابقة" : "نجم العصر الحديث";
+
+        const country = document.createElement("p");
+        country.className = "sp-muted";
+        country.textContent = "البلد: " + p[1];
+
+        const info = document.createElement("p");
+        info.textContent = "سيرة مقسمة إلى فصول: الطفولة، البداية، المحطات المهمة، والإرث الكروي.";
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = "عرض فصول السيرة";
+        btn.addEventListener("click", () => openBook(p));
+
+        card.append(title, tag, country, info, btn);
+        books.append(card);
+      });
+    }
+
+    function openBook(player) {
+      reader.hidden = false;
+      reader.replaceChildren();
+
+      const heading = document.createElement("h2");
+      heading.textContent = "سيرة " + player[0];
+
+      const intro = document.createElement("p");
+      intro.textContent =
+        "البلد: " + player[1] + ". هذه خريطة الفصول المقترحة للسيرة. " +
+        "يجب استكمال كل فصل بمعلومات موثقة قبل نشره كنص كامل.";
+
+      reader.append(heading, intro);
+
+      chapterTitles.forEach((title, index) => {
+        const chapter = document.createElement("section");
+        chapter.className = "sp-chapter";
+
+        const h = document.createElement("h3");
+        h.textContent = "الفصل " + (index + 1) + ": " + title;
+
+        const p = document.createElement("p");
+        p.textContent =
+          "هذا الفصل مخصص لتوثيق مرحلة «" + title + "» في حياة " +
+          player[0] + ". يُضاف هنا نص أصلي طويل مبني على مصادر موثوقة، " +
+          "مع تواريخ وأسماء البطولات والأندية عند التحقق منها. " +
+          "لن تُضاف تفاصيل شخصية غير مؤكدة، ولن تُعرض التخمينات باعتبارها حقائق.";
+
+        chapter.append(h, p);
+        reader.append(chapter);
+      });
+
+      const sourceNote = document.createElement("p");
+      sourceNote.className = "sp-note";
+      sourceNote.textContent =
+        "قبل النشر، أضف مصادر كل فصل وروابطها، وراجع أحدث المعلومات من المصادر الرسمية.";
+      reader.append(sourceNote);
+
+      reader.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    search.addEventListener("input", renderBooks);
+    era.addEventListener("change", renderBooks);
+
+    document.getElementById("spSuggest").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const suggestion = {
+        player: document.getElementById("spName").value.trim(),
+        topic: document.getElementById("spTopic").value,
+        details: document.getElementById("spDetails").value.trim(),
+        date: new Date().toISOString()
+      };
+
+      try {
+        const key = "riwayati_sports_suggestions";
+        const saved = JSON.parse(localStorage.getItem(key) || "[]");
+        saved.push(suggestion);
+        localStorage.setItem(key, JSON.stringify(saved));
+
+        document.getElementById("spFormMsg").textContent =
+          "تم حفظ الاقتراح على هذا الجهاز والمتصفح.";
+        event.target.reset();
+      } catch (error) {
+        document.getElementById("spFormMsg").textContent =
+          "تعذر الحفظ في هذا المتصفح. انسخ اقتراحك واحتفظ به.";
+      }
+    });
+
+    renderBooks();
+  })();
+  </script>
+</section>
+<!-- ===== نهاية قسم الرياضة ===== -->
+
 </body>
 </html>
