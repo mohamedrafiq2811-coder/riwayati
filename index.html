@@ -61,11 +61,11 @@ main{padding:24px 0 50px}.sectionhead{display:flex;align-items:center;justify-co
   <section id="suggest">
     <h2 style="color:var(--gold);margin-top:0">✍️ اقترح رواية نضيفها</h2>
     <p>اكتب اسم الرواية أو الكاتب، وسيفتح لك تطبيق البريد برسالة جاهزة لإرسال الاقتراح.</p>
-    <form id="suggestForm">
+    <form id="suggestForm" action="https://formsubmit.co/mohamedrafiq2811@gmail.com" method="POST">
       <div class="formgrid">
-        <div><label for="bookName">اسم الرواية</label><input id="bookName" required placeholder="اسم الرواية"></div>
-        <div><label for="authorName">اسم الكاتب (اختياري)</label><input id="authorName" placeholder="اسم الكاتب"></div>
-        <div class="wide"><label for="reason">ملاحظتك (اختياري)</label><textarea id="reason" rows="3" placeholder="مثلاً: أريد رابطًا قانونيًا لقراءتها"></textarea></div>
+        <div><label for="bookName">اسم الرواية</label><input id="bookName" name="bookName" required placeholder="اسم الرواية"></div>
+        <div><label for="authorName">اسم الكاتب (اختياري)</label><input id="authorName" name="authorName" placeholder="اسم الكاتب"></div>
+        <div class="wide"><label for="reason">ملاحظاتك (اختياري)</label><textarea id="reason" name="reason" rows="3" placeholder="مثلاً: أريد رابطاً قانونياً لقراءتها"></textarea></div>
         <div class="wide"><button class="gold" type="submit">إرسال الاقتراح</button></div>
       </div>
     </form>
