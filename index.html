@@ -762,7 +762,389 @@ renderBooks();
   })();
   </script>
 </section>
-<!-- ===== نهاية قسم الرياضة ===== -->
 
+<!-- ===== بودكاست مع العارف | رِوايَتي ===== -->
+<section id="arif-podcast" dir="rtl">
+  <style>
+    #arif-podcast {
+      --arif-bg: #101426;
+      --arif-card: #191e35;
+      --arif-gold: #e6bf65;
+      --arif-text: #f5f2e9;
+      --arif-muted: #b9bfd2;
+      background: var(--arif-bg);
+      color: var(--arif-text);
+      padding: 24px 15px;
+      margin: 28px auto;
+      border-radius: 20px;
+      font-family: inherit;
+    }
+    #arif-podcast * { box-sizing: border-box; }
+    #arif-podcast .arif-hero {
+      text-align: center;
+      padding: 30px 16px;
+      border: 1px solid #54472f;
+      border-radius: 18px;
+      background: linear-gradient(135deg,#302447,#111729);
+    }
+    #arif-podcast h2,
+    #arif-podcast h3 { color: var(--arif-gold); }
+    #arif-podcast p { line-height: 1.95; }
+    #arif-podcast .arif-muted { color: var(--arif-muted); }
+    #arif-podcast .arif-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    #arif-podcast button {
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 15px;
+      background: var(--arif-gold);
+      color: #171728;
+      font: inherit;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #arif-podcast button:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 3px;
+    }
+    #arif-podcast .arif-tabs button[aria-pressed="true"] {
+      background: #fff0c4;
+      box-shadow: 0 0 0 2px var(--arif-gold);
+    }
+    #arif-podcast .arif-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 14px;
+    }
+    #arif-podcast .arif-card,
+    #arif-podcast .arif-reader {
+      background: var(--arif-card);
+      border: 1px solid #343b55;
+      border-radius: 15px;
+      padding: 18px;
+    }
+    #arif-podcast .arif-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    #arif-podcast .arif-card button { margin-top: auto; }
+    #arif-podcast .arif-label {
+      color: var(--arif-gold);
+      font-size: .9rem;
+    }
+    #arif-podcast .arif-reader { margin-top: 20px; }
+    #arif-podcast .arif-chapter {
+      border-top: 1px solid #363c55;
+      padding: 12px 0;
+    }
+    #arif-podcast .arif-chapter p { white-space: pre-line; }
+    #arif-podcast [hidden] { display: none !important; }
+  </style>
+
+  <header class="arif-hero">
+    <div style="font-size:44px" aria-hidden="true">🎙️ ⚽ 📚</div>
+    <p class="arif-muted">من رِوايَتي — حكايات تُروى بطريقتنا</p>
+    <h2 style="font-size:2rem">بودكاست مع العارف</h2>
+    <p>كل لاعب وراه حكاية، وكل رواية تفتح لنا عالمًا جديدًا.</p>
+  </header>
+
+  <nav class="arif-tabs" aria-label="أقسام البودكاست">
+    <button type="button" data-arif-tab="football"
+      aria-pressed="true">⚽ حكايات الكرة</button>
+    <button type="button" data-arif-tab="novels"
+      aria-pressed="false">📚 روايات مع العارف</button>
+  </nav>
+
+  <div data-arif-panel="football">
+    <h2>⚽ حكايات الكرة مع العارف</h2>
+    <p class="arif-muted">
+      رحلات اللاعبين من البدايات إلى الملاعب الكبرى.
+      الحكايات مكتوبة بأسلوب أصلي، مع ضرورة مراجعة المعلومات
+      وتحديث الإحصاءات قبل النشر.
+    </p>
+    <div class="arif-grid" id="arif-football-list"></div>
+  </div>
+
+  <div data-arif-panel="novels" hidden>
+    <h2>📚 روايات مع العارف</h2>
+    <p class="arif-muted">
+      روايات أصلية من تأليف رِوايَتي، تُنشر على هيئة فصول
+      يمكن قراءتها داخل الموقع.
+    </p>
+    <div class="arif-grid" id="arif-novel-list"></div>
+  </div>
+
+  <article id="arif-reader" class="arif-reader" hidden
+    aria-live="polite"></article>
+
+  <script>
+  (() => {
+    const root = document.getElementById("arif-podcast");
+    if (!root || root.dataset.ready === "yes") return;
+    root.dataset.ready = "yes";
+
+    const football = [
+      {
+        title: "ليونيل ميسي",
+        subtitle: "من روساريو إلى قمة كرة القدم",
+        label: "الحلقة الأولى",
+        intro:
+          "وُلد ليونيل ميسي في روساريو بالأرجنتين يوم 24 يونيو 1987. بدأت حكايته مع الكرة في سن مبكرة، قبل أن تقوده موهبته إلى تجربة جديدة في إسبانيا.",
+        chapters: [
+          {
+            title: "الفصل الأول: حلم في روساريو",
+            text:
+`في شوارع روساريو، كانت كرة القدم أكثر من لعبة بالنسبة إلى ميسي الصغير. بدأ اللعب في فرق الناشئين، ثم انضم إلى نيولز أولد بويز، حيث أخذت موهبته تلفت الانتباه.
+
+واجه ميسي تحديًا صحيًا متعلقًا بالنمو، واحتاج إلى علاج ومتابعة. ومع انتقاله إلى إسبانيا في سن صغيرة، بدأت عائلته مرحلة جديدة تحمل معها الأمل والتضحيات.
+
+لم يكن أحد يستطيع أن يكتب نهاية هذه الحكاية مسبقًا؛ كانت هناك موهبة واضحة، لكن الطريق إلى الاحتراف احتاج إلى سنوات من التدريب والتطور.`
+          },
+          {
+            title: "الفصل الثاني: بوابة برشلونة",
+            text:
+`انضم ميسي إلى أكاديمية لا ماسيا التابعة لبرشلونة، وتدرج بين فرق الناشئين حتى اقترب من الفريق الأول. هناك تعلم كيف يحول المهارة الفردية إلى لعب جماعي، وكيف يتحرك في المساحات الصغيرة تحت ضغط المنافسين.
+
+خاض أول مباراة رسمية له مع الفريق الأول في الدوري الإسباني عام 2004، ثم سجل هدفه الرسمي الأول مع برشلونة عام 2005.
+
+ومع مرور المواسم، أصبح لاعبًا محوريًا في فريق حقق بطولات كبيرة. كانت المراوغة والتمرير والتسجيل أجزاء من أسلوبه، لكن قدرته على قراءة الملعب كانت مهمة أيضًا.`
+          },
+          {
+            title: "الفصل الثالث: المجد مع الأرجنتين",
+            text:
+`مع منتخب الأرجنتين، مر ميسي بمحطات من النجاح وخيبات الأمل قبل الوصول إلى الألقاب الكبرى. فاز بكوبا أمريكا عام 2021، ثم قاد بلاده إلى لقب كأس العالم 2022 في قطر.
+
+كان الفوز بكأس العالم لحظة تاريخية في مسيرته، لكنه جاء بعد سنوات طويلة من العمل والانتقادات والتجارب الصعبة.
+
+لاحقًا، انتقل ميسي إلى إنتر ميامي في الولايات المتحدة، وواصل مسيرته في مرحلة مختلفة من كرة القدم. وتستمر حكايته الرياضية، لذلك يجب تحديث تفاصيل الموسم الحالي من المصادر الرسمية قبل نشر أي أرقام جديدة.`
+          }
+        ],
+        sources: [
+          {
+            label: "الملف الرسمي لميسي — إنتر ميامي",
+            url: "https://www.intermiamicf.com/players/lionel-messi/"
+          },
+          {
+            label: "الاتحاد الدولي لكرة القدم — FIFA",
+            url: "https://www.fifa.com/"
+          }
+        ]
+      },
+      {
+        title: "كريستيانو رونالدو",
+        subtitle: "من ماديرا إلى الملاعب العالمية",
+        label: "الحلقة الثانية",
+        intro:
+          "وُلد كريستيانو رونالدو في فونشال بجزيرة ماديرا البرتغالية يوم 5 فبراير 1985. تحولت بدايته في كرة القدم إلى مسيرة عبر أندية كبرى ومنتخب البرتغال.",
+        chapters: [
+          {
+            title: "الفصل الأول: بداية من ماديرا",
+            text:
+`بدأ رونالدو لعب كرة القدم في البرتغال، وانضم إلى فرق الناشئين قبل انتقاله إلى أكاديمية سبورتينغ لشبونة. كان الانتقال إلى العاصمة خطوة كبيرة بالنسبة إلى لاعب صغير السن، لكنه أتاح له التدريب في بيئة أكثر تنافسية.
+
+تميز في بداياته بالسرعة والمراوغة والجرأة في مواجهة المدافعين. وكانت هذه المهارات أساسًا احتاج بعده إلى العمل على اتخاذ القرار وإنهاء الهجمات بفاعلية أكبر.
+
+في عام 2003، لفت الأنظار خلال مباراة سبورتينغ أمام مانشستر يونايتد، لتبدأ بعدها مرحلة جديدة في إنجلترا.`
+          },
+          {
+            title: "الفصل الثاني: رحلة الأندية الكبرى",
+            text:
+`انتقل رونالدو إلى مانشستر يونايتد عام 2003، ثم تطور تدريجيًا من جناح يعتمد على المهارات الفردية إلى لاعب أكثر فاعلية في التسجيل وصناعة الفرص.
+
+في عام 2009 انتقل إلى ريال مدريد، وهناك حقق أرقامًا تهديفية بارزة وفاز ببطولات محلية وأوروبية عديدة. ثم لعب ليوفنتوس، وعاد إلى مانشستر يونايتد لفترة ثانية، قبل أن يبدأ مرحلة جديدة مع النصر السعودي.
+
+تختلف تحديات كل نادٍ عن الآخر؛ فأسلوب اللعب والمدرب والزملاء والمنافسة كلها عوامل تؤثر في دور اللاعب. وتظهر مسيرة رونالدو كيف يمكن للاعب أن يطور أسلوبه مع تغير الظروف.`
+          },
+          {
+            title: "الفصل الثالث: البرتغال والإرث",
+            text:
+`مع منتخب البرتغال، أصبح رونالدو قائدًا وأحد أبرز هدافي المنتخب عبر تاريخه. وكان الفوز ببطولة أمم أوروبا عام 2016 محطة رئيسية، تلتها نجاحات دولية أخرى.
+
+يشتهر رونالدو بالارتقاء للكرات الرأسية والتسديد والتحرك داخل منطقة الجزاء، كما أن تطوره عبر السنوات جعله أقل اعتمادًا على المراوغة المستمرة وأكثر تركيزًا على التمركز وإنهاء الهجمات.
+
+ومع استمرار مسيرته، تبقى أرقامه قابلة للتغير. لذلك لا ينبغي اعتبار أي رقم ثابتًا دون تاريخ ومصدر واضحين.`
+          }
+        ],
+        sources: [
+          {
+            label: "الدوري السعودي — آخر الأخبار والإحصاءات",
+            url: "https://www.spl.com.sa/"
+          },
+          {
+            label: "الاتحاد البرتغالي لكرة القدم",
+            url: "https://www.fpf.pt/"
+          }
+        ]
+      }
+    ];
+
+    const novels = [
+      {
+        title: "مدينة لا تبيع الوقت",
+        subtitle: "رواية خيال وغموض أصلية",
+        label: "رواية جديدة من تأليف رِوايَتي",
+        intro:
+          "في مدينة غريبة، يستطيع الناس استبدال ذكرياتهم بدقائق إضافية من الوقت. يكتشف يونس أن ساعة والده القديمة تخفي سرًا قد يغير قوانين المدينة كلها.",
+        chapters: [
+          {
+            title: "الفصل الأول: الساعة المتوقفة",
+            text:
+`لم تكن ساعة المحطة تعمل منذ سبعة عشر عامًا، ومع ذلك كان أهل المدينة ينظرون إليها كل صباح قبل أن يذهبوا إلى أعمالهم. كانوا يقولون إن عقاربها توقفت في اليوم الذي اختفت فيه الدقائق من السوق.
+
+كان يونس يمر بالمحطة كل يوم في طريقه إلى المدرسة. لم يفهم لماذا يضع الناس أيديهم على جيوبهم حين يقتربون من الساعة، ولا لماذا يخفضون أصواتهم عندما يذكر أحد اسم صانعها.
+
+في مساء ممطر، وجد صندوقًا خشبيًا صغيرًا عند باب البيت. لم يحمل الصندوق اسم المرسل، لكن داخله كانت ساعة جيب قديمة تشبه الساعة المعلقة في المحطة.
+
+وعلى غطائها نُقشت جملة واحدة: «لا تدفع من ذاكرتك ثمنًا لشيء تستطيع اكتشافه بنفسك».
+
+قلب يونس الساعة بين يديه. كانت عقاربها تتحرك إلى الخلف.`
+          },
+          {
+            title: "الفصل الثاني: سوق الدقائق",
+            text:
+`في صباح اليوم التالي، اتبع يونس خريطة صغيرة وجدها داخل الصندوق، حتى وصل إلى زقاق لم يره من قبل. في نهايته امتد سوق مزدحم، لكن الباعة لم يعرضوا طعامًا أو ملابس؛ كانت أمامهم زجاجات صغيرة، في كل واحدة ضوء بلون مختلف.
+
+قالت امرأة تجلس خلف طاولة نحاسية إن الزجاجة الزرقاء تحتوي على عشر دقائق، والحمراء على ساعة كاملة. لم يكن الدفع بالمال، بل بذكرى يختارها المشتري من حياته.
+
+شعر يونس بالخوف حين رأى رجلًا يخرج من السوق عاجزًا عن تذكر صوت أمه. أدرك أن المدينة تأخذ من الناس شيئًا لا يمكن شراؤه مرة أخرى.
+
+أخرج ساعة الجيب. ارتجفت عقاربها، وانفتح في جانبها شق رفيع ظهرت خلفه ورقة مطوية تحمل اسمًا يعرفه جيدًا: اسم والده.`
+          },
+          {
+            title: "الفصل الثالث: الاسم المخفي",
+            text:
+`عاد يونس إلى المنزل قبل الغروب، لكنه لم يسأل والده مباشرة. كان يعرف أن هناك أسئلة تحتاج إلى شجاعة، وأن الإجابة قد تغير كل ما يظنه المرء عن عائلته.
+
+وضع الساعة على الطاولة. ما إن رآها والده حتى اختفى الهدوء من وجهه. جلس طويلًا، ثم قال إن المدينة لم تكن دائمًا تبيع الوقت. في الماضي، كان أهلها يتبادلون المعرفة والخبرات، حتى جاء حاكم قرر أن يجعل كل شيء قابلًا للبيع.
+
+احتفظ والد يونس بالساعة لأنه عرف أن فيها سجلًا قديمًا يوضح كيف بدأت الحكاية. لكنه لم يستطع الوصول إلى السجل وحده.
+
+سأل يونس: «ولماذا أعطيتني إياها الآن؟»
+
+أجاب والده: «لأن الساعة بدأت تتحرك من جديد، وهذا يعني أن شخصًا ما وجد الباب».`
+          }
+        ]
+      }
+    ];
+
+    const reader = root.querySelector("#arif-reader");
+    const footballList = root.querySelector("#arif-football-list");
+    const novelList = root.querySelector("#arif-novel-list");
+
+    function makeCard(item, type) {
+      const card = document.createElement("article");
+      card.className = "arif-card";
+
+      const label = document.createElement("span");
+      label.className = "arif-label";
+      label.textContent = item.label;
+
+      const title = document.createElement("h3");
+      title.textContent = item.title;
+
+      const subtitle = document.createElement("p");
+      subtitle.textContent = item.subtitle;
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = type === "novel"
+        ? "اقرأ الرواية"
+        : "اقرأ الحكاية";
+
+      button.addEventListener("click", () => openReader(item, type));
+      card.append(label, title, subtitle, button);
+      return card;
+    }
+
+    function renderLists() {
+      football.forEach(item =>
+        footballList.append(makeCard(item, "football"))
+      );
+      novels.forEach(item =>
+        novelList.append(makeCard(item, "novel"))
+      );
+    }
+
+    function openReader(item, type) {
+      reader.replaceChildren();
+      reader.hidden = false;
+
+      const heading = document.createElement("h2");
+      heading.textContent = item.title;
+
+      const intro = document.createElement("p");
+      intro.textContent = item.intro;
+      reader.append(heading, intro);
+
+      item.chapters.forEach((chapter, index) => {
+        const section = document.createElement("section");
+        section.className = "arif-chapter";
+
+        const h = document.createElement("h3");
+        h.textContent = chapter.title;
+
+        const p = document.createElement("p");
+        p.textContent = chapter.text;
+
+        section.append(h, p);
+        reader.append(section);
+      });
+
+      if (item.sources) {
+        const h = document.createElement("h3");
+        h.textContent = "مصادر للمراجعة";
+        reader.append(h);
+
+        item.sources.forEach(source => {
+          const p = document.createElement("p");
+          const a = document.createElement("a");
+          a.href = source.url;
+          a.textContent = source.label;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.style.color = "var(--arif-gold)";
+          p.append(a);
+          reader.append(p);
+        });
+      }
+
+      const note = document.createElement("p");
+      note.className = "arif-muted";
+      note.textContent = type === "novel"
+        ? "رواية أصلية من تأليف رِوايَتي. يمكن إضافة فصول جديدة إلى هذه الرواية لاحقًا."
+        : "حكاية سردية أصلية؛ راجع المصادر الرسمية لتحديث المعلومات والأرقام.";
+      reader.append(note);
+
+      reader.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    root.querySelectorAll("[data-arif-tab]").forEach(button => {
+      button.addEventListener("click", () => {
+        const selected = button.dataset.arifTab;
+
+        root.querySelectorAll("[data-arif-tab]").forEach(tab => {
+          tab.setAttribute(
+            "aria-pressed",
+            String(tab === button)
+          );
+        });
+
+        root.querySelectorAll("[data-arif-panel]").forEach(panel => {
+          panel.hidden = panel.dataset.arifPanel !== selected;
+        });
+
+        reader.hidden = true;
+      });
+    });
+
+    renderLists();
+  })();
+  </script>
+</section>
 </body>
 </html>
