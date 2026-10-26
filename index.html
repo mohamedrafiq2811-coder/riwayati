@@ -1,66 +1,73 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>رِوايَتي | مكتبة الروايات</title>
 <style>
-:root{--bg:#080d18;--panel:#111a2b;--panel2:#18263b;--gold:#e9c477;--gold2:#f6dfa7;--text:#f7f4ec;--muted:#a9b4c7;--line:#2a3850;--accent:#75c9c1}
+:root{--bg:#fbf5e9;--panel:#fffaf1;--panel2:#f5e7d2;--gold:#d9772b;--gold2:#9b4d20;--text:#38251b;--muted:#7d695c;--line:#e6d3bc;--accent:#b85c27}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:150px}
-body{margin:0;background:radial-gradient(ellipse at 50% -10%,#243a53 0,#0b1220 43%,var(--bg) 78%);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.85}
-header{padding:18px 16px 16px;text-align:center;border-bottom:1px solid #ffffff12;background:#080d18e8;position:sticky;top:0;z-index:20;backdrop-filter:blur(18px)}
+body{margin:0;background:radial-gradient(ellipse at 50% -10%,#fff0d9 0,#fbf5e9 50%,var(--bg) 78%);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.85}
+header{padding:18px 16px 16px;text-align:center;border-bottom:1px solid #ffffff12;background:#fbf5e9ed;position:sticky;top:0;z-index:20;backdrop-filter:blur(18px)}
 .logo{font-size:clamp(30px,5vw,45px);font-weight:900;color:var(--gold2);letter-spacing:.5px;text-shadow:0 5px 30px #e9c47720}
 .tagline{color:var(--muted);margin:0 0 13px;font-size:14px}
 .wrap{width:min(1120px,92%);margin:auto}
 .searchrow{display:flex;gap:9px;max-width:650px;margin:auto}
 .searchrow input{flex:1;min-width:0}
-input,textarea,select{background:#0b1423;border:1px solid #34445b;border-radius:14px;color:var(--text);padding:12px 14px;font:inherit;width:100%;outline:none;transition:border-color .2s,box-shadow .2s}
+input,textarea,select{background:#fffdf8;border:1px solid #dfc7ac;border-radius:14px;color:var(--text);padding:12px 14px;font:inherit;width:100%;outline:none;transition:border-color .2s,box-shadow .2s}
 input:focus,textarea:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px #e9c47718}
 button{font:inherit;cursor:pointer;border:1px solid transparent;border-radius:13px;padding:10px 16px;background:linear-gradient(135deg,#e9c477,#cda653);color:#1c1b17;font-weight:800;transition:transform .2s,filter .2s,background .2s}
 button:hover{transform:translateY(-1px);filter:brightness(1.06)}
-button.secondary{background:#18263a;color:var(--text);border-color:#34445b}
+button.secondary{background:#f0e2d0;color:#4a2d1d;border-color:#ddc4a8}
 button.gold{background:linear-gradient(135deg,#f6dfa7,#d5ac5c);color:#211b10}
-nav{display:flex;gap:8px;justify-content:center;flex-wrap:nowrap;overflow-x:auto;padding:12px 4%;background:#0c1422f2;border-bottom:1px solid #ffffff12;position:sticky;top:146px;z-index:15;scrollbar-width:none}
-nav::-webkit-scrollbar{display:none}
-nav button{white-space:nowrap;flex:0 0 auto;background:transparent;color:#cbd5e2;border:1px solid #34445b;border-radius:999px;padding:8px 16px;font-size:14px}
-nav button.active{background:var(--gold);color:#171a20;border-color:var(--gold)}
+nav#filters{display:flex;gap:8px;justify-content:center;flex-wrap:nowrap;overflow-x:auto;padding:12px 4%;background:#f4e6d3f5;border-bottom:1px solid #ffffff12;position:sticky;top:146px;z-index:15;scrollbar-width:none}
+nav#filters::-webkit-scrollbar{display:none}
+nav#filters button{white-space:nowrap;flex:0 0 auto;background:transparent;color:#5c3c2a;border:1px solid #dfc7ac;border-radius:999px;padding:8px 16px;font-size:14px}
+nav#filters button.active{background:var(--gold);color:#171a20;border-color:var(--gold)}
 main{padding:30px 0 56px}
-.hero{position:relative;isolation:isolate;overflow:hidden;margin:10px 0 28px;padding:clamp(24px,5vw,48px);border:1px solid #d9c18b35;border-radius:28px;background:linear-gradient(115deg,#15273aee,#101827ee 65%,#29213bee);box-shadow:0 22px 60px #0003}
+.hero{position:relative;isolation:isolate;overflow:hidden;margin:10px 0 28px;padding:clamp(24px,5vw,48px);border:1px solid #d9c18b35;border-radius:28px;background:linear-gradient(115deg,#f4dfc1ee,#fffaf1ee 65%,#f6e4ceee);box-shadow:0 22px 60px #0003}
 .hero:before{content:"";position:absolute;z-index:-1;width:250px;height:250px;border-radius:50%;background:#e9c47712;filter:blur(3px);left:-60px;top:-90px}
 .hero-kicker{display:inline-flex;align-items:center;gap:8px;color:var(--gold2);font-size:13px;font-weight:700;letter-spacing:.3px}
-.hero h1{font-size:clamp(27px,5vw,44px);line-height:1.35;margin:10px 0;color:#fff8e8}
-.hero p{max-width:620px;color:#c0cbda;margin:0 0 18px}
+.hero h1{font-size:clamp(27px,5vw,44px);line-height:1.35;margin:10px 0;color:#492c1b}
+.hero p{max-width:620px;color:#725b4a;margin:0 0 18px}
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
 .sectionhead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:10px 0 20px}
 .sectionhead h2{margin:0;color:var(--gold2);font-size:clamp(22px,3vw,29px)}
 .small{color:var(--muted);font-size:13px}
-.notice{background:#142238;border:1px solid #34465d;border-radius:16px;padding:14px 17px;color:#d8e0e9;margin:18px 0 26px}
+.notice{background:#fff4e3;border:1px solid #e5cdb0;border-radius:16px;padding:14px 17px;color:#5c4638;margin:18px 0 26px}
 .notice strong{color:var(--gold2)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,235px),1fr));gap:19px}
-.book{background:linear-gradient(160deg,#17253a,#101827 75%);border:1px solid #ffffff14;border-radius:20px;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s;box-shadow:0 8px 28px #0002}
+.book{background:linear-gradient(160deg,#fffdf8,#f4e8d8 75%);border:1px solid #e6d4bf;border-radius:20px;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s;box-shadow:0 8px 28px #75451b12}
 .book:hover{transform:translateY(-5px);border-color:#e9c47770;box-shadow:0 18px 36px #0004}
 .cover{height:250px;display:flex;align-items:flex-end;justify-content:flex-start;text-align:right;padding:20px;font-size:25px;font-weight:900;color:#fff;background:linear-gradient(155deg,#456a78,#172338 72%);position:relative;isolation:isolate}
 .cover:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 78% 22%,#ffffff26,transparent 23%),linear-gradient(0deg,#080d18ee 0%,transparent 75%)}
 .cover:after{content:"رِوايَتي  ✦";position:absolute;top:16px;right:17px;font-size:11px;letter-spacing:1px;color:#f6dfa7;border:1px solid #f6dfa755;border-radius:999px;padding:4px 9px}
 .cover span{position:relative;z-index:1;max-width:95%;text-shadow:0 3px 14px #000}
 .bookbody{padding:16px}
-.book h3{margin:0 0 5px;font-size:18px;color:#fff8e8}
-.meta{color:#9eafc4;font-size:13px}
-.desc{font-size:14px;color:#c8d2df;min-height:55px}
+.book h3{margin:0 0 5px;font-size:18px;color:#492c1b}
+.meta{color:#856c58;font-size:13px}
+.desc{font-size:14px;color:#6e594a;min-height:55px}
 .bookactions{display:flex;gap:8px}
 .bookactions button{flex:1;padding:9px 7px;font-size:13px}
-.reader{display:none;background:linear-gradient(145deg,#142238,#0e1727);border:1px solid #3a4b62;border-radius:22px;padding:clamp(17px,4vw,34px);margin:28px 0;box-shadow:0 20px 55px #0003}
+.reader{display:none;background:linear-gradient(145deg,#fffaf1,#f3e4d0);border:1px solid #dfc7ac;border-radius:22px;padding:clamp(17px,4vw,34px);margin:28px 0;box-shadow:0 20px 55px #0003}
 .reader.show{display:block}
 .reader h2{color:var(--gold2);margin-top:0}
-.readertext{white-space:pre-wrap;font-size:18px;line-height:2.15;color:#e7eaf0}
+.readertext{white-space:pre-wrap;font-size:18px;line-height:2.15;color:#4a3527}
 .chapterbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:15px 0}
 .chapterbar select{width:auto;max-width:100%;flex:1}
-.progressouter{height:5px;background:#29384d;border-radius:20px;overflow:hidden;margin:14px 0}
+.progressouter{height:5px;background:#ead9c5;border-radius:20px;overflow:hidden;margin:14px 0}
 .progressinner{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0;transition:width .3s}
-footer{text-align:center;padding:28px 16px;color:var(--muted);border-top:1px solid #ffffff14;background:#080d18}
+footer{text-align:center;padding:28px 16px;color:var(--muted);border-top:1px solid #ffffff14;background:#fbf5e9}
 @media(max-width:650px){header{position:sticky;top:0;padding:13px 12px 12px}.logo{font-size:30px}.tagline{font-size:12px;margin-bottom:10px}.searchrow{gap:7px}nav{top:120px;justify-content:flex-start;padding:10px 4%}.searchrow button{padding:10px 13px}.cover{height:215px}.readertext{font-size:16px}.hero{border-radius:21px}.grid{gap:13px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+#sectionNav{position:sticky;top:0;z-index:18;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;background:#f4e6d3f5;border-bottom:1px solid #e6d3bc;padding:10px 3%;}
+#sectionNav a{display:inline-block;text-decoration:none;color:#60391f;border:1px solid #dfc7ac;border-radius:999px;padding:7px 13px;font-size:14px;font-weight:700;background:#fffaf1}
+.extra-section{margin:38px 0;padding:clamp(17px,3vw,28px);border:1px solid #e6d3bc;border-radius:22px;background:#fffaf1;box-shadow:0 10px 30px #75451b0a;scroll-margin-top:150px}
+.section-intro{color:#735b49;margin-top:-8px}.player-tools{display:grid;grid-template-columns:2fr 1fr;gap:10px;margin:15px 0}.player-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px}.player-card{background:#fffdf8;border:1px solid #e6d3bc;border-radius:14px;padding:12px;text-align:right}.player-card h3{margin:0 0 5px;color:#623b23;font-size:15px}.player-card p{margin:0 0 10px;color:#7d695c;font-size:12px}.player-card button{width:100%;padding:7px;font-size:13px}.player-story,.episode{margin-top:16px;padding:18px;border:1px solid #e6d3bc;border-radius:16px;background:#fff4e3}.player-story h3,.episode h3{color:#914b20}.player-story p,.episode p{white-space:pre-line}.podcast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.pod-card{padding:18px;border:1px solid #e6d3bc;border-radius:18px;background:#fffdf8}.pod-art{height:100px;border-radius:13px;display:grid;place-items:center;font-size:44px;background:linear-gradient(135deg,#f7d8ad,#e7a66b)}.pod-card h3{color:#6c3c20}.pod-card p{color:#735b49;font-size:14px}.account-form{max-width:620px;display:grid;gap:14px}.account-form label{font-weight:700;color:#68452f}.account-actions{display:flex;gap:10px;flex-wrap:wrap}.account-form .small{min-height:1em}
+@media(max-width:600px){#sectionNav{position:relative;top:auto;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto}#sectionNav a{white-space:nowrap}.player-tools{grid-template-columns:1fr}.player-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.extra-section{padding:15px}}
+
 </style>
 </head>
 <body>
@@ -77,6 +84,9 @@ footer{text-align:center;padding:28px 16px;color:var(--muted);border-top:1px sol
   <button data-filter="original" onclick="setFilter('original',this)">روايات أصلية</button>
   <button data-filter="favorite" onclick="setFilter('favorite',this)">المفضلة ♥</button>
 </nav>
+<nav id="sectionNav" aria-label="التنقل بين أقسام الموقع">
+  <a href="#library">📚 المكتبة</a><a href="#football">⚽ حكايات اللاعبين</a><a href="#podcast">🎙️ بودكاست مع العارف</a><a href="#account">👤 حسابي</a>
+</nav>
 <main class="wrap">
   <section class="hero">
     <div class="hero-kicker">✦ مكتبة الحكايات العربية</div>
@@ -85,7 +95,7 @@ footer{text-align:center;padding:28px 16px;color:var(--muted);border-top:1px sol
     <div class="hero-actions"><button onclick="document.getElementById('books').scrollIntoView({behavior:'smooth'})">اكتشف الروايات ↓</button><button class="secondary" onclick="document.getElementById('search').focus();window.scrollTo({top:0,behavior:'smooth'})">ابحث عن رواية</button></div>
   </section>
   <div class="notice"><strong>مهم:</strong> الروايات المكتوبة هنا أعمال أصلية للموقع ويمكن قراءتها كاملة. الروايات الحديثة المشهورة المحمية بحقوق النشر لا يمكن نسخ نصوصها كاملة دون إذن، ويمكن إضافتها لاحقًا كرابط قراءة قانوني.</div>
-  <div class="sectionhead"><h2>📚 مكتبة الروايات</h2><span class="small" id="count"></span></div>
+  <div class="sectionhead" id="library"><h2>📚 مكتبة الروايات</h2><span class="small" id="count"></span></div>
   <div class="grid" id="books"></div>
   <section class="reader" id="reader">
     <div class="sectionhead"><div><div class="small" id="readerMeta"></div><h2 id="readerTitle"></h2></div><button class="secondary" onclick="closeReader()">إغلاق ✕</button></div>
@@ -102,6 +112,29 @@ footer{text-align:center;padding:28px 16px;color:var(--muted);border-top:1px sol
       <button class="gold" onclick="changeChapter(1)">التالي →</button>
       <span class="small" id="chapterCounter"></span>
     </div>
+  </section>
+
+
+  <section class="extra-section" id="football">
+    <div class="sectionhead"><h2>⚽ حكايات نجوم كرة القدم</h2><span class="small">معلومات وقصص مختصرة عن 50 لاعبًا</span></div>
+    <p class="section-intro">اختار لاعبًا لقراءة نبذة قصيرة عن مسيرته وأبرز ما يميّزه. المحتوى تعريفي ومختصر، ويمكن توسعته لاحقًا إلى فصول كاملة.</p>
+    <div class="player-tools"><input id="playerSearch" placeholder="ابحث عن لاعب..." aria-label="ابحث عن لاعب"><select id="playerFilter" aria-label="فلترة اللاعبين"><option value="all">كل اللاعبين</option><option value="active">لاعبون معاصرون</option><option value="legend">أساطير ونجوم سابقون</option></select></div>
+    <div class="player-grid" id="playersGrid"></div><article class="player-story" id="playerStory" hidden><button class="secondary" onclick="document.getElementById('playerStory').hidden=true">إغلاق ✕</button><h3 id="playerStoryTitle"></h3><p id="playerStoryText"></p></article>
+  </section>
+  <section class="extra-section" id="podcast">
+    <div class="sectionhead"><h2>🎙️ بودكاست مع العارف</h2><span class="small">حكايات كروية وروايات صوتية مكتوبة</span></div>
+    <p class="section-intro">مساحة للحكايات الملهمة: رحلة النجوم، المنافسة، الاجتهاد، والخيال. هذه نسخة نصية؛ زر التشغيل الصوتي غير متاح قبل إضافة ملفات صوتية فعلية.</p>
+    <div class="podcast-grid">
+      <article class="pod-card"><div class="pod-art">🐐</div><h3>ليونيل ميسي: الموهبة والإصرار</h3><p>حكاية لاعب واجه تحديات مبكرة، وتدرّج في تطوير موهبته حتى أصبح من أبرز نجوم اللعبة.</p><button onclick="showEpisode('messi')">اقرأ الحلقة</button></article>
+      <article class="pod-card"><div class="pod-art">⚡</div><h3>كريستيانو رونالدو: عقلية المنافس</h3><p>قصة عن التدريب والانضباط والسعي المستمر لتحسين الأداء عبر مراحل مختلفة من المسيرة.</p><button onclick="showEpisode('ronaldo')">اقرأ الحلقة</button></article>
+      <article class="pod-card"><div class="pod-art">📖</div><h3>الرسالة الأخيرة</h3><p>رواية أصلية قصيرة عن شاب يجد رسالة غامضة تغيّر نظرته إلى عائلته ومدينته.</p><button onclick="showEpisode('story')">اقرأ الحلقة</button></article>
+    </div>
+    <article class="episode" id="episodeBox" hidden><button class="secondary" onclick="document.getElementById('episodeBox').hidden=true">إغلاق ✕</button><h3 id="episodeTitle"></h3><p id="episodeText"></p></article>
+  </section>
+  <section class="extra-section" id="account">
+    <div class="sectionhead"><h2>👤 حساب القارئ</h2></div>
+    <p class="section-intro">أنشئ ملفًا محليًا بسيطًا على هذا الجهاز. للتوضيح: هذه ليست عضوية آمنة على الإنترنت، وكلمة المرور لا تُرسل إلى خادم؛ لا تستخدم كلمة مرورك الحقيقية.</p>
+    <form id="accountForm" class="account-form"><label>اسم المستخدم<input id="accountName" required maxlength="30" placeholder="اكتب اسمك"></label><label>كلمة مرور محلية<input id="accountPassword" type="password" required minlength="4" maxlength="60" placeholder="4 أحرف على الأقل"></label><div class="account-actions"><button type="submit">حفظ الحساب على هذا الجهاز</button><button type="button" class="secondary" onclick="clearAccount()">مسح بيانات الحساب</button></div><p id="accountStatus" class="small" role="status"></p></form>
   </section>
 
 </main>
@@ -165,13 +198,71 @@ function goChapter(i){if(!currentNovel)return;currentChapter=Math.max(0,Math.min
 function changeChapter(d){goChapter(currentChapter+d);}
 function closeReader(){document.getElementById("reader").classList.remove("show");}
 document.getElementById("search").addEventListener("input",renderBooks);
-document.getElementById("suggestForm").addEventListener("submit",e=>{
- e.preventDefault();
- const name=document.getElementById("bookName").value.trim(), author=document.getElementById("authorName").value.trim(), reason=document.getElementById("reason").value.trim();
- const subject=encodeURIComponent("اقتراح رواية لموقع رِوايَتي");
- const body=encodeURIComponent("اسم الرواية: "+name+"\nالكاتب: "+(author||"غير محدد")+"\nملاحظات: "+(reason||"لا توجد")+"\n\nأرسل هذه الرسالة إلى إدارة الموقع.");
- location.href="mailto:?subject="+subject+"&body="+body;
-});
+
+
+const playerData = [
+['ليونيل ميسي','active','الأرجنتين','اشتهر برؤيته للملعب وتحكمه بالكرة وصناعته للفرص، وتُوّج مع الأرجنتين بكأس العالم 2022.'],
+['كريستيانو رونالدو','active','البرتغال','معروف بقوته البدنية واحترافيته وقدرته التهديفية، وحقق نجاحات كبيرة مع الأندية والمنتخب.'],
+['محمد صلاح','active','مصر','جناح مصري تميّز بالسرعة والتحرك الذكي أمام المرمى وأصبح من أبرز نجوم ليفربول.'],
+['كيليان مبابي','active','فرنسا','مهاجم سريع وفعّال، لفت الأنظار مبكرًا وتوّج بكأس العالم مع فرنسا عام 2018.'],
+['إيرلينغ هالاند','active','النرويج','مهاجم قوي يتميز بالتمركز وإنهاء الهجمات، وسجل أرقامًا تهديفية لافتة في أوروبا.'],
+['كيفن دي بروين','active','بلجيكا','صانع ألعاب مميز بتمريراته الدقيقة ورؤيته للمساحات وقدرته على صناعة الفرص.'],
+['جود بيلينغهام','active','إنجلترا','لاعب وسط يجمع بين الحركة والضغط والتقدم الهجومي رغم صغر سنه.'],
+['فينيسيوس جونيور','active','البرازيل','جناح يعتمد على المراوغة والسرعة وصناعة الخطورة في المواجهات الفردية.'],
+['هاري كين','active','إنجلترا','مهاجم يجمع بين التسجيل وصناعة اللعب والعودة للمشاركة في بناء الهجمات.'],
+['روبرت ليفاندوفسكي','active','بولندا','مهاجم بارع في التحرك داخل المنطقة وإنهاء الفرص بكلتا القدمين والرأس.'],
+['لوكا مودريتش','active','كرواتيا','لاعب وسط اشتهر بالتحكم في إيقاع اللعب والتمرير الدقيق، وفاز بالكرة الذهبية عام 2018.'],
+['نيمار','active','البرازيل','لاعب هجومي معروف بمهارات المراوغة والابتكار في الثلث الأخير من الملعب.'],
+['أنطوان غريزمان','active','فرنسا','لاعب متعدد الأدوار يساهم في صناعة اللعب والضغط والتسجيل.'],
+['سون هيونغ مين','active','كوريا الجنوبية','مهاجم سريع يتميز بإنهاء الهجمات بكلتا القدمين وروحه القيادية.'],
+['ساديـو ماني','active','السنغال','جناح سنغالي ساهم في نجاحات أنديته وحقق كأس أمم أفريقيا مع منتخب بلاده.'],
+['رياض محرز','active','الجزائر','جناح جزائري يتميز باللمسة اليسرى والمراوغة والتمريرات الحاسمة.'],
+['أشرف حكيمي','active','المغرب','ظهير سريع يشارك هجوميًا بفاعلية ويتميز بالانطلاقات على الطرف.'],
+['عمر مرموش','active','مصر','مهاجم مصري متحرك يجيد اللعب في أكثر من مركز هجومي.'],
+['لامين يامال','active','إسبانيا','موهبة شابة اشتهرت بجرأتها في المراوغة وصناعة الفرص من الجهة اليمنى.'],
+['بوكايو ساكا','active','إنجلترا','جناح متوازن يجمع بين السرعة والتمرير والتسجيل والعمل الجماعي.'],
+['بيليه','legend','البرازيل','أحد أشهر لاعبي التاريخ، فاز بكأس العالم ثلاث مرات مع البرازيل.'],
+['دييغو مارادونا','legend','الأرجنتين','صانع لعب استثنائي ارتبط اسمه بقيادة الأرجنتين إلى لقب كأس العالم 1986.'],
+['زين الدين زيدان','legend','فرنسا','لاعب وسط أنيق عُرف بالسيطرة على الكرة والتمرير والظهور في المباريات الكبرى.'],
+['رونالدو نازاريو','legend','البرازيل','مهاجم برازيلي سابق تميز بالسرعة والخداع والإنهاء، وفاز بكأس العالم مرتين.'],
+['رونالدينيو','legend','البرازيل','أمتع الجماهير بمهاراته وابتسامته ولمساته الإبداعية وفاز بالكرة الذهبية عام 2005.'],
+['ديفيد بيكهام','legend','إنجلترا','اشتهر بكراته العرضية والركلات الثابتة وتمريراته الطويلة الدقيقة.'],
+['فرانشيسكو توتي','legend','إيطاليا','رمز روما، تميز بالمهارة والتمرير والتسجيل وظل مرتبطًا بناديه طوال مسيرته تقريبًا.'],
+['أندريا بيرلو','legend','إيطاليا','صانع لعب عميق عُرف بهدوئه وتمريراته الطويلة وقدرته على التحكم في إيقاع المباراة.'],
+['تشافي هيرنانديز','legend','إسبانيا','أحد أبرز لاعبي الوسط في جيله، اعتمد على التمرير السريع والتحرك الذكي.'],
+['أندريس إنييستا','legend','إسبانيا','لاعب وسط مبدع سجل هدف فوز إسبانيا بكأس العالم 2010.'],
+['تييري هنري','legend','فرنسا','مهاجم فرنسي بارز جمع بين السرعة والمهارة والإنهاء الدقيق.'],
+['ديدييه دروغبا','legend','كوت ديفوار','مهاجم قوي وقيادي، ترك بصمة كبيرة مع تشيلسي ومنتخب كوت ديفوار.'],
+['صامويل إيتو','legend','الكاميرون','مهاجم كاميروني سريع وهداف، حقق ألقابًا أوروبية وأفريقية عديدة.'],
+['كاكا','legend','البرازيل','صانع لعب هجومي فاز بالكرة الذهبية عام 2007 بفضل مهاراته وانطلاقاته.'],
+['فرانك لامبارد','legend','إنجلترا','لاعب وسط هداف عُرف بتوقيت وصوله إلى منطقة الجزاء وتسديداته.'],
+['ستيفن جيرارد','legend','إنجلترا','قائد ليفربول السابق، تميز بالتسديد والتمرير والروح القيادية.'],
+['واين روني','legend','إنجلترا','مهاجم متعدد الاستخدامات جمع بين القوة والمهارة وصناعة اللعب.'],
+['إيكر كاسياس','legend','إسبانيا','حارس مرمى إسباني بارز ساهم في ألقاب كبرى مع ريال مدريد والمنتخب.'],
+['جيانلويجي بوفون','legend','إيطاليا','حارس مرمى أسطوري اشتهر بالثبات والقيادة وطول المسيرة.'],
+['مانويل نوير','active','ألمانيا','حارس مرمى غيّر مفهوم الحارس المتقدم بمشاركته في بناء اللعب خارج المنطقة.'],
+['سيرخيو راموس','active','إسبانيا','مدافع وقائد معروف بقوته في المواجهات الهوائية وأهدافه في اللحظات الحاسمة.'],
+['كارليس بويول','legend','إسبانيا','مدافع وقائد سابق لبرشلونة، عُرف بالشجاعة والالتزام والعمل الجماعي.'],
+['باولو مالديني','legend','إيطاليا','مدافع تاريخي جمع بين التمركز والهدوء والاستمرارية مع ميلان.'],
+['كافو','legend','البرازيل','ظهير أيمن هجومي وقائد للبرازيل، وشارك في التتويج بكأس العالم مرتين.'],
+['روبرتو كارلوس','legend','البرازيل','ظهير أيسر شهير بتسديداته القوية وانطلاقاته الهجومية.'],
+['كلارنس سيدورف','legend','هولندا','لاعب وسط فاز بدوري أبطال أوروبا مع ثلاثة أندية مختلفة.'],
+['لويس سواريز','active','أوروغواي','مهاجم هداف اشتهر بحركته داخل المنطقة وقدرته على استغلال الفرص.'],
+['أنخيل دي ماريا','active','الأرجنتين','جناح وصانع لعب ساهم بأهداف وتمريرات حاسمة في بطولات كبرى للأرجنتين.'],
+['فرانك ريبيري','legend','فرنسا','جناح فرنسي تميز بالمراوغة والسرعة وكان عنصرًا مهمًا في بايرن ميونخ.'],
+['آريين روبن','legend','هولندا','جناح اشتهر بالانطلاق من اليمين إلى الداخل والتسديد بقدمه اليسرى.'],
+['يايا توريه','legend','كوت ديفوار','لاعب وسط قوي جمع بين التقدم بالكرة والتسجيل وصناعة اللعب.']
+];
+function renderPlayers(){const q=(document.getElementById('playerSearch').value||'').trim().toLowerCase(),f=document.getElementById('playerFilter').value;const list=playerData.filter(p=>(f==='all'||p[1]===f)&&(!q||(p[0]+' '+p[2]+' '+p[3]).toLowerCase().includes(q)));document.getElementById('playersGrid').innerHTML=list.map((p,i)=>`<article class="player-card"><h3>${esc(p[0])}</h3><p>${esc(p[2])} · ${p[1]==='active'?'معاصر':'أسطورة'}</p><button onclick="openPlayer('${esc(p[0])}')">اقرأ النبذة</button></article>`).join('')||'<p>مفيش لاعبين مطابقين للبحث.</p>';}
+function openPlayer(name){const p=playerData.find(x=>x[0]===name);if(!p)return;document.getElementById('playerStoryTitle').textContent=p[0]+' — '+p[2];document.getElementById('playerStoryText').textContent=p[3]+'\n\nتذكّر أن مسيرة اللاعب تُقاس أيضًا بالتطور والعمل الجماعي والتأثير داخل الملعب، وليس بالأرقام وحدها.';document.getElementById('playerStory').hidden=false;document.getElementById('playerStory').scrollIntoView({behavior:'smooth',block:'nearest'});}
+document.getElementById('playerSearch').addEventListener('input',renderPlayers);document.getElementById('playerFilter').addEventListener('change',renderPlayers);
+const episodes={messi:['ليونيل ميسي: الموهبة والإصرار','بدأت حكاية ميسي في روزاريو بالأرجنتين، حيث ظهرت موهبته مبكرًا. انتقل إلى برشلونة وهو صغير، وتعلّم أن الموهبة تحتاج إلى تدريب وصبر ودعم. تطورت مسيرته عبر سنوات من المنافسة والنجاحات، ثم حقق مع منتخب بلاده حلم الفوز بكأس العالم 2022. الدرس من الحكاية ليس أن الطريق كان سهلًا، بل أن التطور المستمر والعمل مع الفريق يصنعان فرقًا كبيرًا.'],ronaldo:['كريستيانو رونالدو: عقلية المنافس','من بداياته في ماديرا إلى الملاعب الأوروبية الكبرى، بنى رونالدو مسيرته على التدريب والانضباط وتطوير جوانب لعبه. تغيّر أسلوبه مع مرور السنوات، من جناح يعتمد على السرعة والمراوغة إلى مهاجم هداف يعرف كيف يستغل المساحات. تذكّرنا قصته أن الطموح يصبح أقوى عندما يتحول إلى عادات يومية، وأن النجاح يحتاج إلى تعلّم مستمر واحترام للفريق.'],story:['الرسالة الأخيرة','في مساء شتوي، وجد يونس ظرفًا قديمًا تحت باب المكتبة. لم يحمل اسم مرسل، بل جملة واحدة: «افتح الدرج الذي لم تفتحه منذ سنوات». في الدرج وجد صورة لوالده ورسالة تشرح سبب انتقال العائلة من الحي القديم. لم تمنحه الرسالة كل الإجابات، لكنها جعلته يدرك أن فهم الماضي يبدأ بالسؤال والاستماع، لا بتخمين أسوأ الاحتمالات. في اليوم التالي أعاد ترتيب الكتب في المكتبة، وترك مكانًا فارغًا لكل حكاية لم تُروَ بعد.']};
+function showEpisode(key){document.getElementById('episodeTitle').textContent=episodes[key][0];document.getElementById('episodeText').textContent=episodes[key][1];document.getElementById('episodeBox').hidden=false;document.getElementById('episodeBox').scrollIntoView({behavior:'smooth',block:'nearest'});}
+function clearAccount(){localStorage.removeItem('riwayati-account');document.getElementById('accountForm').reset();document.getElementById('accountStatus').textContent='تم مسح بيانات الحساب المحلية.';}
+document.getElementById('accountForm').addEventListener('submit',e=>{e.preventDefault();const name=document.getElementById('accountName').value.trim(),password=document.getElementById('accountPassword').value;if(!name||password.length<4)return;localStorage.setItem('riwayati-account',JSON.stringify({name}));document.getElementById('accountStatus').textContent='أهلًا يا '+name+'، تم حفظ بيانات الحساب على هذا الجهاز فقط.';document.getElementById('accountPassword').value='';});
+try{const a=JSON.parse(localStorage.getItem('riwayati-account')||'null');if(a&&a.name)document.getElementById('accountStatus').textContent='الحساب المحلي المحفوظ: '+a.name;}catch(e){}
+renderPlayers();
+
 renderBooks();
 </script>
 </body>
