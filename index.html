@@ -65,7 +65,7 @@ footer{text-align:center;padding:28px 16px;color:var(--muted);border-top:1px sol
 #sectionNav{position:sticky;top:0;z-index:18;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;background:#f4e6d3f5;border-bottom:1px solid #e6d3bc;padding:10px 3%;}
 #sectionNav a{display:inline-block;text-decoration:none;color:#60391f;border:1px solid #dfc7ac;border-radius:999px;padding:7px 13px;font-size:14px;font-weight:700;background:#fffaf1}
 .extra-section{margin:38px 0;padding:clamp(17px,3vw,28px);border:1px solid #e6d3bc;border-radius:22px;background:#fffaf1;box-shadow:0 10px 30px #75451b0a;scroll-margin-top:150px}
-.section-intro{color:#735b49;margin-top:-8px}.player-tools{display:grid;grid-template-columns:2fr 1fr;gap:10px;margin:15px 0}.player-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px}.player-card{background:#fffdf8;border:1px solid #e6d3bc;border-radius:14px;padding:12px;text-align:right}.player-card h3{margin:0 0 5px;color:#623b23;font-size:15px}.player-card p{margin:0 0 10px;color:#7d695c;font-size:12px}.player-card button{width:100%;padding:7px;font-size:13px}.player-story,.episode{margin-top:16px;padding:18px;border:1px solid #e6d3bc;border-radius:16px;background:#fff4e3}.player-story h3,.episode h3{color:#914b20}.player-story p,.episode p{white-space:pre-line}.podcast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.pod-card{padding:18px;border:1px solid #e6d3bc;border-radius:18px;background:#fffdf8}.pod-art{height:100px;border-radius:13px;display:grid;place-items:center;font-size:44px;background:linear-gradient(135deg,#f7d8ad,#e7a66b)}.pod-card h3{color:#6c3c20}.pod-card p{color:#735b49;font-size:14px}.account-form{max-width:620px;display:grid;gap:14px}.account-form label{font-weight:700;color:#68452f}.account-actions{display:flex;gap:10px;flex-wrap:wrap}.account-form .small{min-height:1em}
+.section-intro{color:#735b49;margin-top:-8px}.player-tools{display:grid;grid-template-columns:2fr 1fr;gap:10px;margin:15px 0}.player-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px}.player-card{background:#fffdf8;border:1px solid #e6d3bc;border-radius:14px;padding:12px;text-align:right}.player-card h3{margin:0 0 5px;color:#623b23;font-size:15px}.player-card p{margin:0 0 10px;color:#7d695c;font-size:12px}.player-card button{width:100%;padding:7px;font-size:13px}.player-story,.episode{margin-top:16px;padding:18px;border:1px solid #e6d3bc;border-radius:16px;background:#fff4e3}.player-story h3,.episode h3{color:#914b20}.player-story p,.episode p{white-space:pre-line}.podcast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.pod-card{padding:18px;border:1px solid #e6d3bc;border-radius:18px;background:#fffdf8}.pod-art{height:100px;border-radius:13px;display:grid;place-items:center;font-size:44px;background:linear-gradient(135deg,#f7d8ad,#e7a66b)}.pod-card h3{color:#6c3c20}.pod-card p{color:#735b49;font-size:14px}
 @media(max-width:600px){#sectionNav{position:relative;top:auto;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto}#sectionNav a{white-space:nowrap}.player-tools{grid-template-columns:1fr}.player-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.extra-section{padding:15px}}
 
 </style>
@@ -85,7 +85,7 @@ footer{text-align:center;padding:28px 16px;color:var(--muted);border-top:1px sol
   <button data-filter="favorite" onclick="setFilter('favorite',this)">المفضلة ♥</button>
 </nav>
 <nav id="sectionNav" aria-label="التنقل بين أقسام الموقع">
-  <a href="#library">📚 المكتبة</a><a href="#football">⚽ حكايات اللاعبين</a><a href="#podcast">🎙️ بودكاست مع العارف</a><a href="#account">👤 حسابي</a>
+  <a href="#library">📚 المكتبة</a><a href="#football">⚽ حكايات اللاعبين</a><a href="#playerPodcast">⚽ بودكاست اللاعبين</a><a href="#podcast">📚 بودكاست مع العارف</a>
 </nav>
 <main class="wrap">
   <section class="hero">
@@ -121,22 +121,21 @@ footer{text-align:center;padding:28px 16px;color:var(--muted);border-top:1px sol
     <div class="player-tools"><input id="playerSearch" placeholder="ابحث عن لاعب..." aria-label="ابحث عن لاعب"><select id="playerFilter" aria-label="فلترة اللاعبين"><option value="all">كل اللاعبين</option><option value="active">لاعبون معاصرون</option><option value="legend">أساطير ونجوم سابقون</option></select></div>
     <div class="player-grid" id="playersGrid"></div><article class="player-story" id="playerStory" hidden><button class="secondary" onclick="document.getElementById('playerStory').hidden=true">إغلاق ✕</button><h3 id="playerStoryTitle"></h3><p id="playerStoryText"></p></article>
   </section>
-  <section class="extra-section" id="podcast">
-    <div class="sectionhead"><h2>🎙️ بودكاست مع العارف</h2><span class="small">حكايات كروية وروايات صوتية مكتوبة</span></div>
-    <p class="section-intro">مساحة للحكايات الملهمة: رحلة النجوم، المنافسة، الاجتهاد، والخيال. هذه نسخة نصية؛ زر التشغيل الصوتي غير متاح قبل إضافة ملفات صوتية فعلية.</p>
+  <section class="extra-section" id="playerPodcast">
+    <div class="sectionhead"><h2>⚽ بودكاست اللاعبين</h2><span class="small">حكايات نجوم كرة القدم</span></div>
+    <p class="section-intro">حلقات نصية قصيرة عن رحلة اللاعبين، التدريب، المنافسة، والإنجازات.</p>
     <div class="podcast-grid">
-      <article class="pod-card"><div class="pod-art">🐐</div><h3>ليونيل ميسي: الموهبة والإصرار</h3><p>حكاية لاعب واجه تحديات مبكرة، وتدرّج في تطوير موهبته حتى أصبح من أبرز نجوم اللعبة.</p><button onclick="showEpisode('messi')">اقرأ الحلقة</button></article>
-      <article class="pod-card"><div class="pod-art">⚡</div><h3>كريستيانو رونالدو: عقلية المنافس</h3><p>قصة عن التدريب والانضباط والسعي المستمر لتحسين الأداء عبر مراحل مختلفة من المسيرة.</p><button onclick="showEpisode('ronaldo')">اقرأ الحلقة</button></article>
-      <article class="pod-card"><div class="pod-art">📖</div><h3>الرسالة الأخيرة</h3><p>رواية أصلية قصيرة عن شاب يجد رسالة غامضة تغيّر نظرته إلى عائلته ومدينته.</p><button onclick="showEpisode('story')">اقرأ الحلقة</button></article>
+      <article class="pod-card"><div class="pod-art">🐐</div><h3>ليونيل ميسي: الموهبة والإصرار</h3><p>حكاية لاعب واجه تحديات مبكرة وطوّر موهبته بالعمل والصبر.</p><button onclick="showEpisode('messi')">اقرأ الحلقة</button></article>
+      <article class="pod-card"><div class="pod-art">⚡</div><h3>كريستيانو رونالدو: عقلية المنافس</h3><p>قصة عن التدريب والانضباط وتطوير الأداء عبر مراحل المسيرة.</p><button onclick="showEpisode('ronaldo')">اقرأ الحلقة</button></article>
     </div>
     <article class="episode" id="episodeBox" hidden><button class="secondary" onclick="document.getElementById('episodeBox').hidden=true">إغلاق ✕</button><h3 id="episodeTitle"></h3><p id="episodeText"></p></article>
   </section>
-  <section class="extra-section" id="account">
-    <div class="sectionhead"><h2>👤 حساب القارئ</h2></div>
-    <p class="section-intro">أنشئ ملفًا محليًا بسيطًا على هذا الجهاز. للتوضيح: هذه ليست عضوية آمنة على الإنترنت، وكلمة المرور لا تُرسل إلى خادم؛ لا تستخدم كلمة مرورك الحقيقية.</p>
-    <form id="accountForm" class="account-form"><label>اسم المستخدم<input id="accountName" required maxlength="30" placeholder="اكتب اسمك"></label><label>كلمة مرور محلية<input id="accountPassword" type="password" required minlength="4" maxlength="60" placeholder="4 أحرف على الأقل"></label><div class="account-actions"><button type="submit">حفظ الحساب على هذا الجهاز</button><button type="button" class="secondary" onclick="clearAccount()">مسح بيانات الحساب</button></div><p id="accountStatus" class="small" role="status"></p></form>
+  <section class="extra-section" id="podcast">
+    <div class="sectionhead"><h2>📚 بودكاست مع العارف</h2><span class="small">أربع روايات غموض وتشويق</span></div>
+    <p class="section-intro">اختار رواية لعرض فصولها وقراءتها هنا. هذا القسم مخصص للروايات فقط.</p>
+    <div class="podcast-grid" id="mysteryNovelsGrid"></div>
+    <article class="episode" id="mysteryReader" hidden><button class="secondary" onclick="document.getElementById('mysteryReader').hidden=true">إغلاق ✕</button><h3 id="mysteryTitle"></h3><label for="mysteryChapterSelect">اختار الفصل</label><select id="mysteryChapterSelect" onchange="showMysteryChapter(Number(this.value))"></select><h3 id="mysteryChapterTitle"></h3><p id="mysteryChapterText"></p><div class="chapterbar"><button class="secondary" onclick="showMysteryChapter(mysteryCurrentChapter-1)">← السابق</button><button onclick="showMysteryChapter(mysteryCurrentChapter+1)">التالي →</button></div></article>
   </section>
-
 </main>
 <footer>رِوايَتي © — اقرأ، تخيّل، واكتشف عوالم جديدة.</footer>
 <script>
@@ -253,16 +252,40 @@ const playerData = [
 ['آريين روبن','legend','هولندا','جناح اشتهر بالانطلاق من اليمين إلى الداخل والتسديد بقدمه اليسرى.'],
 ['يايا توريه','legend','كوت ديفوار','لاعب وسط قوي جمع بين التقدم بالكرة والتسجيل وصناعة اللعب.']
 ];
+const mysteryNovels = [
+ {id:'mystery-201',title:'سر البيت رقم 13',blurb:'بيت مهجور يخفي سر عائلة اختفت منذ سنوات.',chapters:[
+ ['الفصل الأول: الضوء الغريب','عاد عمر إلى قريته بعد غياب طويل. وفي نهاية الشارع رأى بيتًا مهجورًا يظهر في نافذته ضوء كل ليلة، رغم أن أهل القرية أقسموا أن لا أحد يعيش فيه. قرر أن يعرف سر البيت، فوجد على بابه رقم 13 محفورًا حديثًا.'],
+ ['الفصل الثاني: المفتاح','وجد عمر مفتاحًا قديمًا تحت عتبة الباب. فتح به غرفة صغيرة، فوجد صورًا لعائلة لا يعرفها، وفي إحدى الصور ظهر والده واقفًا أمام البيت. خلف الصورة رسالة تحذره من فتح القبو.'],
+ ['الفصل الثالث: الرسالة','قادته الرسالة إلى خزانة مخفية، بداخلها وثائق عن ملكية البيت ورسائل لم تُرسل. اكتشف أن عائلته أخفت قصة نزاع قديم، وأن شخصًا ما ما زال يبحث عن الوثائق.'],
+ ['الفصل الرابع: الحقيقة','في القبو وجد عمر الدليل الذي يعيد البيت إلى أصحابه الحقيقيين. لكنه وجد أيضًا رسالة جديدة تقول: الحقيقة ليست في البيت، بل في الشخص الذي أرسلك إليه.'] ]},
+ {id:'mystery-202',title:'القطار الأخير',blurb:'قطار ليلي يصل إلى محطة لا تظهر على الخرائط.',chapters:[
+ ['الفصل الأول: التذكرة','عثرت ليلى على تذكرة قطار داخل كتاب قديم. لم يكن عليها سوى موعد منتصف الليل واسم محطة لم تسمع به من قبل: محطة النسيان.'],
+ ['الفصل الثاني: الركاب','كان الركاب صامتين، يحمل كل منهم غرضًا قديمًا. أخبرها رجل مسن أن القطار لا يصل إلى المدن، بل إلى أسرار لم تُكشف.'],
+ ['الفصل الثالث: العربة السابعة','في العربة السابعة وجدت ليلى صورة لجدها ورسالة موجهة إليها، رغم أن الرسالة كُتبت قبل ولادتها بعشرين عامًا. الرسالة قادتها إلى عنوان منزل قديم قرب المحطة.'],
+ ['الفصل الرابع: المحطة','نزلت ليلى في المحطة فوجدت دفترًا يشرح سر اختفاء جدها. وعندما عادت إلى المنزل، اكتشفت أن التذكرة اختفت، لكن اسم المحطة كُتب على مرآتها.'] ]},
+ {id:'mystery-203',title:'مكتبة الأشياء المفقودة',blurb:'مكتبة غريبة تحتفظ بكل شيء فقده الناس.',chapters:[
+ ['الفصل الأول: الباب الخفي','دخلت مريم متجرًا صغيرًا هربًا من المطر. وجدت خلف رف الكتب بابًا يقود إلى مكتبة لا نهاية لها، وعلى مدخلها عبارة: هنا تجد ما فقدته.'],
+ ['الفصل الثاني: السوار','رأت مريم سوارها القديم فوق رف بعيد. اختفى السوار قبل سنوات، وبجانبه بطاقة تحمل اسم والدتها وتاريخًا غامضًا.'],
+ ['الفصل الثالث: الكتاب الأسود','فتحت كتابًا أسود فوجدت رسائل عائلية تكشف أن اختفاء السوار لم يكن مصادفة، وأن أمين المكتبة يعرف سرًا عن عائلتها.'],
+ ['الفصل الرابع: الثمن','أعاد أمين المكتبة السوار إليها، لكنه طلب منها أن تترك شيئًا آخر. رفضت مريم، وغادرت وهي تحمل السوار ومفتاحًا لم يكن معها عند دخولها.'] ]},
+ {id:'mystery-204',title:'الرسالة التي وصلت غدًا',blurb:'رسائل تتنبأ بالمستقبل، وآخر رسالة تحمل اسم صاحبها.',chapters:[
+ ['الفصل الأول: الظرف','وصل إلى يوسف ظرف بلا طابع، بداخله رسالة تقول إن ساعة المطبخ ستتوقف في السادسة واثنتي عشرة دقيقة من اليوم التالي. حدث ذلك بالفعل.'],
+ ['الفصل الثاني: التحذير','وصل ظرف ثانٍ يحذره من مقابلة صديق قديم. تجاهل يوسف الرسالة، ثم اكتشف أن صديقه يبحث عن صندوق اختفى منذ سنوات.'],
+ ['الفصل الثالث: صاحب الرسائل','قادته الرسائل إلى مخزن قديم، حيث وجد دفاتر والده وآلة بريد تعمل بمؤقت. لكن أحد الظروف كان جديدًا ولا يشبه خط والده.'],
+ ['الفصل الرابع: الرسالة الأخيرة','فتح يوسف الظرف الأخير، فوجد جملة واحدة: الرسالة القادمة لن تصل إليك، لأنك أنت من سيكتبها. وفي أسفل الورقة وجد تاريخ الغد.'] ]}
+];
+let mysteryCurrent = null, mysteryCurrentChapter = 0;
+function renderMysteryNovels(){document.getElementById('mysteryNovelsGrid').innerHTML=mysteryNovels.map(n=>`<article class="pod-card"><div class="pod-art">📖</div><h3>${esc(n.title)}</h3><p>${esc(n.blurb)}</p><p class="small">${n.chapters.length} فصول</p><button onclick="openMysteryNovel('${n.id}')">اقرأ الرواية</button></article>`).join('');}
+function openMysteryNovel(id){mysteryCurrent=mysteryNovels.find(n=>n.id===id);if(!mysteryCurrent)return;document.getElementById('mysteryTitle').textContent=mysteryCurrent.title;document.getElementById('mysteryChapterSelect').innerHTML=mysteryCurrent.chapters.map((c,i)=>`<option value="${i}">${esc(c[0])}</option>`).join('');document.getElementById('mysteryReader').hidden=false;showMysteryChapter(0);document.getElementById('mysteryReader').scrollIntoView({behavior:'smooth',block:'nearest'});}
+function showMysteryChapter(i){if(!mysteryCurrent)return;mysteryCurrentChapter=Math.max(0,Math.min(i,mysteryCurrent.chapters.length-1));const c=mysteryCurrent.chapters[mysteryCurrentChapter];document.getElementById('mysteryChapterSelect').value=mysteryCurrentChapter;document.getElementById('mysteryChapterTitle').textContent=c[0];document.getElementById('mysteryChapterText').textContent=c[1];}
 function renderPlayers(){const q=(document.getElementById('playerSearch').value||'').trim().toLowerCase(),f=document.getElementById('playerFilter').value;const list=playerData.filter(p=>(f==='all'||p[1]===f)&&(!q||(p[0]+' '+p[2]+' '+p[3]).toLowerCase().includes(q)));document.getElementById('playersGrid').innerHTML=list.map((p,i)=>`<article class="player-card"><h3>${esc(p[0])}</h3><p>${esc(p[2])} · ${p[1]==='active'?'معاصر':'أسطورة'}</p><button onclick="openPlayer('${esc(p[0])}')">اقرأ النبذة</button></article>`).join('')||'<p>مفيش لاعبين مطابقين للبحث.</p>';}
 function openPlayer(name){const p=playerData.find(x=>x[0]===name);if(!p)return;document.getElementById('playerStoryTitle').textContent=p[0]+' — '+p[2];document.getElementById('playerStoryText').textContent=p[3]+'\n\nتذكّر أن مسيرة اللاعب تُقاس أيضًا بالتطور والعمل الجماعي والتأثير داخل الملعب، وليس بالأرقام وحدها.';document.getElementById('playerStory').hidden=false;document.getElementById('playerStory').scrollIntoView({behavior:'smooth',block:'nearest'});}
 document.getElementById('playerSearch').addEventListener('input',renderPlayers);document.getElementById('playerFilter').addEventListener('change',renderPlayers);
 const episodes={messi:['ليونيل ميسي: الموهبة والإصرار','بدأت حكاية ميسي في روزاريو بالأرجنتين، حيث ظهرت موهبته مبكرًا. انتقل إلى برشلونة وهو صغير، وتعلّم أن الموهبة تحتاج إلى تدريب وصبر ودعم. تطورت مسيرته عبر سنوات من المنافسة والنجاحات، ثم حقق مع منتخب بلاده حلم الفوز بكأس العالم 2022. الدرس من الحكاية ليس أن الطريق كان سهلًا، بل أن التطور المستمر والعمل مع الفريق يصنعان فرقًا كبيرًا.'],ronaldo:['كريستيانو رونالدو: عقلية المنافس','من بداياته في ماديرا إلى الملاعب الأوروبية الكبرى، بنى رونالدو مسيرته على التدريب والانضباط وتطوير جوانب لعبه. تغيّر أسلوبه مع مرور السنوات، من جناح يعتمد على السرعة والمراوغة إلى مهاجم هداف يعرف كيف يستغل المساحات. تذكّرنا قصته أن الطموح يصبح أقوى عندما يتحول إلى عادات يومية، وأن النجاح يحتاج إلى تعلّم مستمر واحترام للفريق.'],story:['الرسالة الأخيرة','في مساء شتوي، وجد يونس ظرفًا قديمًا تحت باب المكتبة. لم يحمل اسم مرسل، بل جملة واحدة: «افتح الدرج الذي لم تفتحه منذ سنوات». في الدرج وجد صورة لوالده ورسالة تشرح سبب انتقال العائلة من الحي القديم. لم تمنحه الرسالة كل الإجابات، لكنها جعلته يدرك أن فهم الماضي يبدأ بالسؤال والاستماع، لا بتخمين أسوأ الاحتمالات. في اليوم التالي أعاد ترتيب الكتب في المكتبة، وترك مكانًا فارغًا لكل حكاية لم تُروَ بعد.']};
 function showEpisode(key){document.getElementById('episodeTitle').textContent=episodes[key][0];document.getElementById('episodeText').textContent=episodes[key][1];document.getElementById('episodeBox').hidden=false;document.getElementById('episodeBox').scrollIntoView({behavior:'smooth',block:'nearest'});}
-function clearAccount(){localStorage.removeItem('riwayati-account');document.getElementById('accountForm').reset();document.getElementById('accountStatus').textContent='تم مسح بيانات الحساب المحلية.';}
-document.getElementById('accountForm').addEventListener('submit',e=>{e.preventDefault();const name=document.getElementById('accountName').value.trim(),password=document.getElementById('accountPassword').value;if(!name||password.length<4)return;localStorage.setItem('riwayati-account',JSON.stringify({name}));document.getElementById('accountStatus').textContent='أهلًا يا '+name+'، تم حفظ بيانات الحساب على هذا الجهاز فقط.';document.getElementById('accountPassword').value='';});
-try{const a=JSON.parse(localStorage.getItem('riwayati-account')||'null');if(a&&a.name)document.getElementById('accountStatus').textContent='الحساب المحلي المحفوظ: '+a.name;}catch(e){}
 renderPlayers();
 renderBooks();
+renderMysteryNovels();
 </script>
 <script>
 (function () {
@@ -417,101 +440,6 @@ renderBooks();
 })();
 </script>
 
-<script>
-(function () {
-  if (
-    typeof podcastNovels === "undefined" ||
-    typeof renderPodcast !== "function"
-  ) {
-    console.error("تعذر العثور على نظام البودكاست.");
-    return;
-  }
-
-  const newStories = [
-    {
-      id: "podcast-mystery-201",
-      title: "سر البيت رقم 13",
-      author: "رِوايَتي",
-      genre: "غموض وتشويق",
-      blurb: "بيت مهجور يخفي سر عائلة اختفت منذ سنوات.",
-      chapters: [
-        ["الفصل الأول: الضوء الغريب",
-         "عاد عمر إلى قريته بعد غياب طويل. وفي نهاية الشارع رأى بيتًا مهجورًا يظهر في نافذته ضوء كل ليلة، رغم أن أهل القرية أقسموا أن لا أحد يعيش فيه."],
-        ["الفصل الثاني: المفتاح",
-         "وجد عمر مفتاحًا قديمًا تحت عتبة الباب. فتح به غرفة صغيرة، فوجد صورًا لعائلة لا يعرفها، وفي إحدى الصور ظهر والده واقفًا أمام البيت."],
-        ["الفصل الثالث: الرسالة",
-         "خلف الصورة رسالة تحذر من فتح القبو. لكن عمر اكتشف أن الرسالة تحمل تاريخ اليوم التالي، وأن شخصًا ما يعرف أنه دخل المنزل."],
-        ["الفصل الرابع: السر",
-         "في القبو وجد عمر وثائق تثبت أن البيت كان ملكًا لعائلته. لكن المفاجأة كانت رسالة جديدة تقول: الحقيقة ليست في البيت، بل في الشخص الذي أرسلك إليه."]
-      ]
-    },
-    {
-      id: "podcast-mystery-202",
-      title: "القطار الأخير",
-      author: "رِوايَتي",
-      genre: "خيال وغموض",
-      blurb: "قطار ليلي يصل إلى محطة لا تظهر على الخرائط.",
-      chapters: [
-        ["الفصل الأول: التذكرة",
-         "عثرت ليلى على تذكرة قطار داخل كتاب قديم. لم يكن عليها سوى موعد منتصف الليل واسم محطة لم تسمع به من قبل: محطة النسيان."],
-        ["الفصل الثاني: الركاب",
-         "كان الركاب صامتين، يحمل كل منهم غرضًا قديمًا. أخبرها رجل مسن أن القطار لا يصل إلى المدن، بل إلى أسرار لم تُكشف."],
-        ["الفصل الثالث: العربة السابعة",
-         "في العربة السابعة وجدت ليلى صورة لجدها ورسالة موجهة إليها، رغم أن الرسالة كُتبت قبل ولادتها بعشرين عامًا."],
-        ["الفصل الرابع: المحطة",
-         "نزلت ليلى في المحطة فوجدت دفترًا يشرح سر اختفاء جدها. وعندما عادت إلى المنزل، اكتشفت أن التذكرة اختفت، لكن اسم المحطة كُتب على مرآتها."]
-      ]
-    },
-    {
-      id: "podcast-mystery-203",
-      title: "مكتبة الأشياء المفقودة",
-      author: "رِوايَتي",
-      genre: "فانتازيا وغموض",
-      blurb: "مكتبة غريبة تحتفظ بكل شيء فقده الناس.",
-      chapters: [
-        ["الفصل الأول: الباب الخفي",
-         "دخلت مريم متجرًا صغيرًا هربًا من المطر. وجدت خلف رف الكتب بابًا يقود إلى مكتبة لا نهاية لها، وعلى مدخلها عبارة: هنا تجد ما فقدته."],
-        ["الفصل الثاني: السوار",
-         "رأت مريم سوارها القديم فوق رف بعيد. اختفى السوار قبل سنوات، وبجانبه بطاقة تحمل اسم والدتها وتاريخًا غامضًا."],
-        ["الفصل الثالث: الكتاب الأسود",
-         "فتحت كتابًا أسود فوجدت رسائل عائلية تكشف أن اختفاء السوار لم يكن مصادفة، وأن أمين المكتبة يعرف سرًا عن عائلتها."],
-        ["الفصل الرابع: الثمن",
-         "أعاد أمين المكتبة السوار إليها، لكنه طلب منها أن تترك شيئًا آخر. رفضت مريم، وغادرت وهي تحمل السوار ومفتاحًا لم يكن معها عند دخولها."]
-      ]
-    },
-    {
-      id: "podcast-mystery-204",
-      title: "الرسالة التي وصلت غدًا",
-      author: "رِوايَتي",
-      genre: "تشويق وخيال",
-      blurb: "رسائل تتنبأ بالمستقبل، وآخر رسالة تحمل اسم صاحبها.",
-      chapters: [
-        ["الفصل الأول: الظرف",
-         "وصل إلى يوسف ظرف بلا طابع، بداخله رسالة تقول إن ساعة المطبخ ستتوقف في السادسة واثنتي عشرة دقيقة من اليوم التالي. حدث ذلك بالفعل."],
-        ["الفصل الثاني: التحذير",
-         "وصل ظرف ثانٍ يحذره من مقابلة صديق قديم. تجاهل يوسف الرسالة، ثم اكتشف أن صديقه يبحث عن صندوق اختفى منذ سنوات."],
-        ["الفصل الثالث: صاحب الرسائل",
-         "قادته الرسائل إلى مخزن قديم، حيث وجد دفاتر والده وآلة بريد تعمل بمؤقت. لكن أحد الظروف كان جديدًا ولا يشبه خط والده."],
-        ["الفصل الرابع: الرسالة الأخيرة",
-         "فتح يوسف الظرف الأخير، فوجد جملة واحدة: الرسالة القادمة لن تصل إليك، لأنك أنت من سيكتبها. وفي أسفل الورقة وجد تاريخ الغد."]
-      ]
-    }
-  ];
-
-  const existingIds = new Set(
-    podcastNovels.map(story => story.id)
-  );
-
-  const additions = newStories.filter(
-    story => !existingIds.has(story.id)
-  );
-
-  podcastNovels.push(...additions);
-  renderPodcast();
-
-  console.log("تمت إضافة " + additions.length + " روايات للبودكاست.");
-})();
-</script>
 
 </body>
 </html>
