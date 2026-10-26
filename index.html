@@ -116,25 +116,46 @@ footer{text-align:center;padding:28px 16px;color:var(--muted);border-top:1px sol
 
 
   <section class="extra-section" id="football">
-    <div class="sectionhead"><h2>⚽ حكايات نجوم كرة القدم</h2><span class="small">معلومات وقصص مختصرة عن 50 لاعبًا</span></div>
-    <p class="section-intro">اختار لاعبًا لقراءة نبذة قصيرة عن مسيرته وأبرز ما يميّزه. المحتوى تعريفي ومختصر، ويمكن توسعته لاحقًا إلى فصول كاملة.</p>
-    <div class="player-tools"><input id="playerSearch" placeholder="ابحث عن لاعب..." aria-label="ابحث عن لاعب"><select id="playerFilter" aria-label="فلترة اللاعبين"><option value="all">كل اللاعبين</option><option value="active">لاعبون معاصرون</option><option value="legend">أساطير ونجوم سابقون</option></select></div>
-    <div class="player-grid" id="playersGrid"></div><article class="player-story" id="playerStory" hidden><button class="secondary" onclick="document.getElementById('playerStory').hidden=true">إغلاق ✕</button><h3 id="playerStoryTitle"></h3><p id="playerStoryText"></p></article>
+    <div class="sectionhead"><h2>⚽ روايات كرة القدم</h2><span class="small">حكايات أصلية من تأليف رِوايَتي</span></div>
+    <p class="section-intro">هنا تبدأ حكايات كروية خيالية من تأليفنا، بشخصيات وأحداث أصلية. اختر رواية لعرض فصولها والقراءة داخل الموقع.</p>
+    <div class="player-tools"><input id="footballNovelSearch" placeholder="ابحث عن رواية..." aria-label="ابحث عن رواية"></div>
+    <div class="player-grid" id="footballNovelsGrid"></div>
+    <article class="player-story" id="footballNovelReader" hidden>
+      <button class="secondary" onclick="document.getElementById('footballNovelReader').hidden=true">إغلاق ✕</button>
+      <h3 id="footballNovelTitle"></h3><p id="footballNovelDescription"></p>
+      <label for="footballNovelChapterSelect">اختر الفصل</label>
+      <select id="footballNovelChapterSelect"></select>
+      <h4 id="footballNovelChapterTitle"></h4>
+      <div id="footballNovelChapterText" class="riwayati-added-body"></div>
+      <div class="chapterbar"><button class="secondary" id="footballNovelPrev">← السابق</button><button id="footballNovelNext">التالي →</button></div>
+    </article>
+    <div class="riwayati-content-slot" id="riwayati-slot-football" data-riwayati-slot="football"></div>
   </section>
   <section class="extra-section" id="playerPodcast">
-    <div class="sectionhead"><h2>⚽ بودكاست اللاعبين</h2><span class="small">حكايات نجوم كرة القدم</span></div>
-    <p class="section-intro">حلقات نصية قصيرة عن رحلة اللاعبين، التدريب، المنافسة، والإنجازات.</p>
-    <div class="podcast-grid">
-      <article class="pod-card"><div class="pod-art">🐐</div><h3>ليونيل ميسي: الموهبة والإصرار</h3><p>حكاية لاعب واجه تحديات مبكرة وطوّر موهبته بالعمل والصبر.</p><button onclick="showEpisode('messi')">اقرأ الحلقة</button></article>
-      <article class="pod-card"><div class="pod-art">⚡</div><h3>كريستيانو رونالدو: عقلية المنافس</h3><p>قصة عن التدريب والانضباط وتطوير الأداء عبر مراحل المسيرة.</p><button onclick="showEpisode('ronaldo')">اقرأ الحلقة</button></article>
-    </div>
-    <article class="episode" id="episodeBox" hidden><button class="secondary" onclick="document.getElementById('episodeBox').hidden=true">إغلاق ✕</button><h3 id="episodeTitle"></h3><p id="episodeText"></p></article>
+    <div class="sectionhead"><h2>🎙️ بودكاست اللاعبين</h2><span class="small">حكايات لاعبين مختلفين</span></div>
+    <p class="section-intro">بدلًا من قصتي ميسي ورونالدو، نبدأ بمجموعة جديدة من الحكايات عن نجوم من أجيال وبلدان مختلفة.</p>
+    <div class="podcast-grid" id="playerPodcastGrid"></div>
+    <article class="episode" id="playerPodcastReader" hidden>
+      <button class="secondary" onclick="document.getElementById('playerPodcastReader').hidden=true">إغلاق ✕</button>
+      <h3 id="playerPodcastTitle"></h3><p id="playerPodcastIntro"></p>
+      <label for="playerPodcastChapterSelect">اختر الجزء</label><select id="playerPodcastChapterSelect"></select>
+      <h4 id="playerPodcastChapterTitle"></h4><div id="playerPodcastChapterText"></div>
+      <div class="chapterbar"><button class="secondary" id="playerPodcastPrev">← السابق</button><button id="playerPodcastNext">التالي →</button></div>
+    </article>
+    <div class="riwayati-content-slot" id="riwayati-slot-playerPodcast" data-riwayati-slot="playerPodcast"></div>
   </section>
   <section class="extra-section" id="podcast">
-    <div class="sectionhead"><h2>📚 بودكاست مع العارف</h2><span class="small">أربع روايات غموض وتشويق</span></div>
-    <p class="section-intro">اختار رواية لعرض فصولها وقراءتها هنا. هذا القسم مخصص للروايات فقط.</p>
-    <div class="podcast-grid" id="mysteryNovelsGrid"></div>
-    <article class="episode" id="mysteryReader" hidden><button class="secondary" onclick="document.getElementById('mysteryReader').hidden=true">إغلاق ✕</button><h3 id="mysteryTitle"></h3><label for="mysteryChapterSelect">اختار الفصل</label><select id="mysteryChapterSelect" onchange="showMysteryChapter(Number(this.value))"></select><h3 id="mysteryChapterTitle"></h3><p id="mysteryChapterText"></p><div class="chapterbar"><button class="secondary" onclick="showMysteryChapter(mysteryCurrentChapter-1)">← السابق</button><button onclick="showMysteryChapter(mysteryCurrentChapter+1)">التالي →</button></div></article>
+    <div class="sectionhead"><h2>📚 بودكاست مع العارف</h2><span class="small">حكاية لاعب جديدة كل يوم</span></div>
+    <p class="section-intro">حكايات توثيقية عن حياة اللاعبين ومسيرتهم، مقسّمة إلى أجزاء سهلة القراءة. سنضيف حكاية جديدة كل يوم، مع التمييز بين المعلومات التاريخية وأي صياغة أدبية.</p>
+    <div class="podcast-grid" id="alArefDailyGrid"></div>
+    <article class="episode" id="alArefReader" hidden>
+      <button class="secondary" onclick="document.getElementById('alArefReader').hidden=true">إغلاق ✕</button>
+      <h3 id="alArefTitle"></h3><p id="alArefIntro"></p>
+      <label for="alArefChapterSelect">اختر الفصل</label><select id="alArefChapterSelect"></select>
+      <h4 id="alArefChapterTitle"></h4><div id="alArefChapterText"></div>
+      <div class="chapterbar"><button class="secondary" id="alArefPrev">← السابق</button><button id="alArefNext">التالي →</button></div>
+    </article>
+    <div class="riwayati-content-slot" id="riwayati-slot-podcast" data-riwayati-slot="podcast"></div>
   </section>
 </main>
 <footer>رِوايَتي © — اقرأ، تخيّل، واكتشف عوالم جديدة.</footer>
@@ -439,7 +460,250 @@ renderMysteryNovels();
   console.info("رِوايَتي: تمت إضافة " + additions.length + " رواية جديدة.");
 })();
 </script>
+<section id="riwayati-zikola" dir="rtl" lang="ar">
+  <style>
+    #riwayati-zikola{font-family:Tahoma,Arial,sans-serif;color:#f5f5f7;line-height:1.95;margin:28px auto;max-width:1100px;padding:0 14px}
+    #riwayati-zikola *{box-sizing:border-box}
+    #riwayati-zikola .rz-card{background:#171c29;border:1px solid #343d52;border-radius:20px;overflow:hidden;box-shadow:0 12px 35px #0002}
+    #riwayati-zikola .rz-hero{padding:26px;background:linear-gradient(135deg,#252f46,#151923)}
+    #riwayati-zikola .rz-kicker{color:#e4bd75;font-size:.92rem;font-weight:bold}
+    #riwayati-zikola h2{font-size:clamp(1.7rem,4vw,2.5rem);margin:4px 0;color:#fff;line-height:1.4}
+    #riwayati-zikola h3{color:#e4bd75;margin:20px 0 5px}
+    #riwayati-zikola p{margin:8px 0}
+    #riwayati-zikola .rz-muted{color:#c3cad9}
+    #riwayati-zikola .rz-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    #riwayati-zikola .rz-tag{border:1px solid #48516a;border-radius:50px;padding:3px 11px;font-size:.85rem;color:#e8eaf0}
+    #riwayati-zikola .rz-body{display:grid;grid-template-columns:225px minmax(0,1fr);gap:18px;padding:18px}
+    #riwayati-zikola .rz-nav{background:#20283a;border-radius:14px;padding:12px;align-self:start}
+    #riwayati-zikola .rz-nav button{display:block;width:100%;text-align:right;border:1px solid transparent;background:transparent;color:#d2d8e6;border-radius:9px;padding:9px 10px;margin:4px 0;font:inherit;cursor:pointer}
+    #riwayati-zikola .rz-nav button.rz-active,#riwayati-zikola .rz-nav button:hover{background:#303b53;border-color:#4a5670;color:#fff}
+    #riwayati-zikola .rz-content{background:#111621;border:1px solid #30394c;border-radius:14px;padding:22px;min-width:0}
+    #riwayati-zikola .rz-content h3:first-child{margin-top:0}
+    #riwayati-zikola .rz-section{display:none}
+    #riwayati-zikola .rz-section.rz-active{display:block}
+    #riwayati-zikola .rz-note{border-right:3px solid #e4bd75;background:#222a3b;padding:12px 14px;border-radius:8px;margin:16px 0}
+    #riwayati-zikola .rz-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+    #riwayati-zikola .rz-link{display:inline-block;background:#e4bd75;color:#17130c;text-decoration:none;border-radius:9px;padding:9px 14px;font-weight:bold}
+    #riwayati-zikola .rz-link.alt{background:#252e42;color:#fff;border:1px solid #46516a}
+    #riwayati-zikola .rz-footer{padding:0 24px 22px;color:#b8c0d4;font-size:.85rem}
+    @media(max-width:700px){#riwayati-zikola .rz-body{grid-template-columns:1fr;padding:12px}#riwayati-zikola .rz-nav{display:grid;grid-template-columns:1fr 1fr;gap:3px}#riwayati-zikola .rz-nav button{font-size:.9rem;padding:8px}#riwayati-zikola .rz-content{padding:16px}#riwayati-zikola .rz-hero{padding:21px}}
+  </style>
+  <div class="rz-card">
+    <header class="rz-hero">
+      <div class="rz-kicker">رِوايَتي • صفحة الرواية</div>
+      <h2>أرض زيكولا</h2>
+      <div class="rz-muted">للكاتب عمرو عبد الحميد — فانتازيا ومغامرة وتشويق</div>
+      <div class="rz-tags"><span class="rz-tag">خيال</span><span class="rz-tag">مغامرة</span><span class="rz-tag">تحليل أدبي</span><span class="rz-tag">ملخص</span></div>
+      <div class="rz-actions">
+        <button type="button" class="rz-link" data-rz-go="summary">اقرأ الملخص</button>
+        <button type="button" class="rz-link alt" data-rz-go="themes">أهم الأفكار</button>
+      </div>
+    </header>
+    <div class="rz-body">
+      <nav class="rz-nav" aria-label="أقسام صفحة أرض زيكولا">
+        <button type="button" class="rz-active" data-rz-go="summary">ملخص الرواية</button>
+        <button type="button" data-rz-go="world">عالم زيكولا</button>
+        <button type="button" data-rz-go="characters">الشخصيات والصراع</button>
+        <button type="button" data-rz-go="themes">الأفكار والرسائل</button>
+        <button type="button" data-rz-go="review">تحليل أدبي</button>
+        <button type="button" data-rz-go="reading">القراءة والمصادر</button>
+      </nav>
+      <div class="rz-content">
+        <section class="rz-section rz-active" data-rz-section="summary">
+          <h3>ملخص طويل للرواية</h3>
+          <p><strong>هذا عرض عام للفكرة ومحاور القراءة، وليس سردًا كاملًا لكل أحداث الرواية أو بديلًا عن النص الأصلي.</strong></p>
+          <p>تقدم رواية «أرض زيكولا» عالمًا خياليًا له قوانينه الخاصة، يختلف عن الحياة التي يعرفها القارئ. ومن هذه الفكرة تبدأ مغامرة تقوم على دخول عالم غير مألوف ومحاولة فهمه والتعامل مع شروطه. فالشخص الذي يجد نفسه في مكان لا يعرف قواعده لا يستطيع الاعتماد على عاداته السابقة وحدها، بل يحتاج إلى الملاحظة والتعلّم واتخاذ قرارات حذرة.</p>
+          <p>لا تمثل قواعد هذا العالم تفاصيل جانبية فحسب؛ فهي تؤثر في حياة الناس وفي طريقة تعاملهم مع بعضهم. ومع اكتشاف طبيعة المجتمع، يبدأ القارئ في إدراك أن كل اختيار قد تكون له نتيجة، وأن فهم النظام المحيط بالشخصيات يصبح جزءًا أساسيًا من المغامرة نفسها.</p>
+          <p>تجري الأحداث في أجواء من الغموض والتوتر. فالمجهول يثير الأسئلة، وكل معلومة جديدة تساعد على فهم جانب من العالم، لكنها لا تلغي بالضرورة المخاطر. وتصبح محاولة النجاة والتأقلم اختبارًا للقدرة على التفكير والصبر، لا مجرد اختبار للقوة. كما يظهر الفرق بين معرفة القواعد نظريًا والقدرة على التصرف في اللحظة التي تصبح فيها القرارات مصيرية.</p>
+          <p>لا تكتفي الرواية بتقديم عالم غريب بغرض الإبهار، بل تستخدم الخيال لطرح أسئلة عن قيمة الإنسان والمعايير التي تحكم المجتمعات. فعندما تتغير القواعد التي يعيش الناس في ظلها، قد تتغير نظرتهم إلى أنفسهم وإلى الآخرين، وقد تظهر توترات بين المصلحة الفردية والتعاون، وبين الخوف والجرأة، وبين ما يرغب الإنسان في فعله وما تسمح به ظروفه.</p>
+          <p>تضع هذه الظروف الشخصيات أمام اختيارات صعبة. فقد يبدو قرار ما مناسبًا لشخص ولا يناسب آخر، لأن لكل شخصية مخاوفها وأهدافها والمعلومات المتاحة لها. ومن هنا يأتي جانب مهم من التشويق: لا يتابع القارئ ما يحدث فحسب، بل يحاول فهم سبب اختيار الشخصية لطريق معين، والنتائج التي قد تترتب عليه.</p>
+          <p>يمكن قراءة الرحلة في زيكولا بوصفها اختبارًا للإنسان عندما يجد نفسه خارج منطقة الأمان. ففي الحياة المعتادة، قد يتعامل المرء مع أشياء كثيرة كأنها مضمونة، لكن دخول عالم جديد يجبره على إعادة النظر في أولوياته. ويصبح التكيف مع الواقع وفهم الآخرين والانتباه إلى عواقب الأفعال أمورًا ضرورية لمواصلة الطريق.</p>
+          <p>وتبرز كذلك أهمية المعلومات؛ فالمعلومة قد تساعد على فهم الموقف، لكن نقصها أو سوء تفسيرها قد يقود إلى قرار غير مناسب. لذلك يظل الفضول والرغبة في الاكتشاف عنصرين مهمين في تجربة القراءة، إذ يحاول القارئ تركيب صورة العالم من القواعد والمواقف التي تظهر تباعًا.</p>
+          <p>وعلى المستوى الإنساني، تتيح الرواية التأمل في طريقة تصرف البشر تحت الضغط. فقد يضع بعضهم مصلحته أولًا، وقد يحاول آخرون التعاون، وقد يتردد المرء بين خيارات متعددة عندما لا يكون هناك حل سهل. هذه الاحتمالات تجعل العالم الخيالي قريبًا من أسئلة واقعية، حتى لو كانت ظروفه غير مألوفة.</p>
+          <p>في النهاية، تجمع الفكرة بين مغامرة مشوقة وعالم ذي قواعد خاصة ومساحة للتفكير في الاختيار والعدالة والخوف والمسؤولية. هذا ملخص تمهيدي وتحليل عام؛ أما التفاصيل الدقيقة لتتابع الأحداث وتحولاتها ونهايتها فتُكتشف من خلال قراءة النص الأصلي.</p>
+          <div class="rz-note">ملاحظة: هذا ملخص تمهيدي وتحليل عام، وليس تلخيصًا تفصيليًا لكل فصل أو لكل منعطف في الحبكة.</div>
+        </section>
+        <section class="rz-section" data-rz-section="world">
+          <h3>عالم زيكولا وقوانينه</h3>
+          <p>العالم المتخيل عنصر فاعل في تشكيل الأحداث، وليس مجرد مكان تجري فيه المغامرة. فقوانينه تفرض على الشخصيات أن تتعلم كيف تسير الحياة داخله، وأن تفهم ما الذي يساعدها على الاستمرار وما الذي قد يعرضها للخطر.</p>
+          <p>حين يواجه الإنسان نظامًا جديدًا، تصبح الملاحظة والتعلّم ضروريين. وقد يكتشف أن ما اعتاده في عالمه السابق لا ينفع بالطريقة نفسها هنا. ومن خلال هذا الاختلاف، يدفع العمل القارئ إلى التساؤل: هل تبدو القواعد عادلة لأنها مألوفة فحسب؟ وكيف تتغير نظرة الناس إلى الحياة عندما يصبح نظام المجتمع جزءًا مباشرًا من مصيرهم؟</p>
+          <p>هذا البناء يجعل العالم أشبه بتجربة فكرية؛ إذ يأخذ فكرة غير معتادة ويستكشف أثرها في قرارات الناس وعلاقاتهم. كما أن الغموض المحيط بالقواعد يحافظ على رغبة القارئ في اكتشاف المزيد.</p>
+        </section>
+        <section class="rz-section" data-rz-section="characters">
+          <h3>الشخصيات والصراع</h3>
+          <p>تُفهم الشخصيات من خلال مواقفها واختياراتها، لا من خلال صفاتها المعلنة فقط. فالضغط قد يكشف ما لا يظهر في الأوقات الهادئة: ما الذي يخشاه الإنسان؟ ما الذي يرفض التخلي عنه؟ وإلى أي حد يمكنه التمسك بمبادئه عندما تصبح الظروف صعبة؟</p>
+          <h3>الصراع مع البيئة</h3><p>تحتاج الشخصيات إلى فهم القواعد المحيطة بها والتصرف داخلها، رغم أن بعضها قد يكون غير مألوف أو صعبًا.</p>
+          <h3>الصراع الداخلي</h3><p>يتمثل في التردد والخوف والقلق، وفي محاولة الموازنة بين الرغبة في النجاة والمسؤولية عن القرارات.</p>
+          <h3>الصراع بين البشر</h3><p>قد تختلف المصالح ووجهات النظر، فيصبح التعاون والثقة والحذر عوامل مؤثرة في العلاقات.</p>
+          <p class="rz-muted">هذا تحليل عام لمحاور الصراع، وليس قائمة تفصيلية بأسماء الشخصيات أو أحداثها.</p>
+        </section>
+        <section class="rz-section" data-rz-section="themes">
+          <h3>الأفكار والرسائل</h3>
+          <h3>قيمة الإنسان</h3><p>تدعو الفكرة إلى التفكير في المعايير التي يستخدمها المجتمع لتقييم أفراده، والتمييز بين قيمة الإنسان وبين النظام الذي يفرض عليه شروطًا معينة.</p>
+          <h3>الحرية والاختيار</h3><p>حين يعيش المرء داخل قواعد صارمة، قد لا يملك حرية مطلقة، بل يضطر إلى المفاضلة بين خيارات صعبة وتحمل نتائجها.</p>
+          <h3>الخوف والشجاعة</h3><p>الشجاعة لا تعني غياب الخوف؛ فقد تكون في القدرة على التفكير واتخاذ خطوة محسوبة رغم القلق.</p>
+          <h3>المصلحة والتعاون</h3><p>تطرح المغامرة أسئلة عن التوازن بين حماية الذات ومساعدة الآخرين، وعن دور الثقة في الظروف غير المضمونة.</p>
+          <h3>المسؤولية والعواقب</h3><p>قد يؤثر كل قرار في صاحبه وفي المحيطين به، ولذلك يصبح فهم النتائج جزءًا من النضج واتخاذ القرار.</p>
+        </section>
+        <section class="rz-section" data-rz-section="review">
+          <h3>تحليل أدبي</h3>
+          <p>من عناصر الجذب في «أرض زيكولا» أن فكرتها المركزية تفتح بابًا واسعًا للخيال، ثم تستخدم اختلاف العالم لإثارة أسئلة قريبة من الحياة اليومية. ويجتمع عنصر المغامرة مع الفضول؛ فالقارئ يريد أن يعرف كيف يعمل المكان، وفي الوقت نفسه يتساءل عن أثر قواعده في البشر.</p>
+          <p>كما أن العالم ذي القوانين الخاصة يساعد على صناعة التوتر؛ لأن الشخصية لا تواجه عقبة عادية فحسب، بل تواجه نظامًا يجب أن تفهمه قبل أن تستطيع التعامل معه. ويمكن أن تكون هذه الفكرة مدخلًا لمناقشة العدالة والحرية وقيمة الإنسان وسلوك الناس في الظروف الصعبة.</p>
+          <h3>أسئلة للنقاش</h3>
+          <ul><li>كيف يؤثر نظام المجتمع في قرارات أفراده؟</li><li>هل يمكن الحكم على قرار شخصية دون معرفة ظروفها كاملة؟</li><li>ما الفرق بين الشجاعة والتهور؟</li><li>كيف يمكن أن تغيّر المعلومات الجديدة فهمنا للموقف؟</li></ul>
+        </section>
+        <section class="rz-section" data-rz-section="reading">
+          <h3>القراءة والمصادر</h3>
+          <p>هذه الصفحة مخصصة للتعريف بالرواية، وتضم ملخصًا تمهيديًا وتحليلًا عامًا، ولا تحتوي على النص الكامل للكتاب.</p>
+          <div class="rz-actions">
+            <a class="rz-link" href="https://www.abjjad.com/" target="_blank" rel="noopener noreferrer">البحث في أبجد</a>
+            <a class="rz-link alt" href="https://www.jarir.com/" target="_blank" rel="noopener noreferrer">البحث في جرير</a>
+          </div>
+          <p class="rz-muted">تحقق من توفر الكتاب وشروط القراءة أو الشراء في المصدر نفسه. لا تنشر نسخة كاملة من الرواية إلا إذا كان لديك إذن واضح بإعادة نشرها.</p>
+        </section>
+      </div>
+    </div>
+    <div class="rz-footer">رِوايَتي — مساحة لمحبي القراءة والحكايات</div>
+  </div>
+  <script>
+  (function(){
+    var root=document.getElementById('riwayati-zikola');
+    if(!root || root.dataset.ready==='1') return;
+    root.dataset.ready='1';
+    root.querySelectorAll('[data-rz-go]').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var target=btn.getAttribute('data-rz-go');
+        root.querySelectorAll('[data-rz-section]').forEach(function(sec){
+          sec.classList.toggle('rz-active',sec.getAttribute('data-rz-section')===target);
+        });
+        root.querySelectorAll('.rz-nav [data-rz-go]').forEach(function(nav){
+          nav.classList.toggle('rz-active',nav.getAttribute('data-rz-go')===target);
+        });
+      });
+    });
+  })();
+  </script>
+</section>
+<!-- نهاية إضافة أرض زيكولا -->
 
+
+
+
+<!-- نظام محتوى روايات الكرة وبودكاست اللاعبين -->
+<style>
+#footballNovelsGrid,#playerPodcastGrid,#alArefDailyGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;margin:16px 0}
+.riwayati-story-card{background:var(--panel,#fffaf1);border:1px solid var(--line,#e6d3bc);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:9px;min-width:0}
+.riwayati-story-card .story-symbol{font-size:30px}
+.riwayati-story-card h3{margin:0;color:var(--gold2,#9b4d20)}
+.riwayati-story-card p{margin:0;line-height:1.8}
+.riwayati-story-card button{align-self:flex-start;margin-top:auto}
+.riwayati-reader-text{white-space:pre-line;line-height:2;font-size:1.02rem}
+</style>
+<script>
+(function(){
+  const footballStories = [
+    {id:'last-minute',title:'الدقيقة الأخيرة',symbol:'⏱️',description:'فريق صغير يحاول إنقاذ نادي الحي من الاختفاء قبل نهاية الموسم.',chapters:[
+      ['الفصل الأول: الملعب القديم','في آخر شارع بالمدينة، كان هناك ملعب تحيط به أسوار متعبة ومدرجات لا تمتلئ إلا يوم الجمعة. لم يكن فريق النوارس يملك نجومًا مشهورين أو ميزانية كبيرة، لكنه كان يملك شيئًا يصعب شراؤه: أهل الحي الذين اعتادوا أن يجتمعوا حوله. حين وصل الخطاب الذي يهدد بإغلاق الملعب، عرف آدم، قائد الفريق الشاب، أن الموسم القادم قد يكون الأخير. لم يعد السؤال كيف يفوزون بالمباراة التالية، بل كيف يثبتون أن هذا المكان يستحق البقاء.'],
+      ['الفصل الثاني: فرصة لا تتكرر','بدأ آدم يجمع زملاءه بعد المدرسة، لا ليطلب منهم معجزة، بل ليقترح بطولة محلية يعود ريعها لصيانة الملعب. ضحك بعضهم من الفكرة، واعترض آخرون لأن الفريق خسر مبارياته الأخيرة. لكن المدرب عادل وضع الكرة في منتصف الملعب وقال: «النتيجة لا تبدأ من لوحة الأهداف، بل من قراركم أن تحاولوا». وفي ذلك المساء، تدرب الفريق حتى أضاءت مصابيح الشارع.']
+    ]},
+    {id:'number-ten',title:'القميص رقم عشرة',symbol:'👕',description:'لاعب موهوب يتعلم أن صناعة الفرص أهم من البحث عن المجد وحده.',chapters:[
+      ['الفصل الأول: الرقم الثقيل','كان يونس يظن أن القميص رقم عشرة وعدٌ بأن يكون الأفضل دائمًا. أحب المراوغات والتصفيق، وكان يحزن إذا انتهت المباراة دون أن يذكر المعلّق اسمه. في أول مباراة له مع الفريق الأول، احتفظ بالكرة طويلًا وخسرها في لحظة حاسمة. وبعد المباراة لم يوبخه المدرب؛ طلب منه فقط أن يشاهد زملاءه وهم يتحركون من دونه. لأول مرة، رأى يونس المساحات التي كان يتجاهلها.'],
+      ['الفصل الثاني: تمريرة تغيّر كل شيء','في التدريب التالي، مرر يونس الكرة بدل أن يراوغ، ثم تحرك ليحصل عليها من جديد. تكررت المحاولة حتى صار الفريق يفهم بعضه من نظرة. لم يفقد يونس موهبته، لكنه اكتشف طريقة أفضل لاستخدامها: أن يجعل من حوله أخطر، لا أن يحمل المباراة وحده.']
+    ]},
+    {id:'goalkeeper-dream',title:'حارس الأحلام',symbol:'🧤',description:'حارس ناشئ يتجاوز خوفه ويكتشف أن الشجاعة تبدأ بالتعلم من الخطأ.',chapters:[
+      ['الفصل الأول: بين القائمين','كان سليم أصغر لاعبي الفريق، لكنه اختار أصعب مكان في الملعب: حراسة المرمى. بعد خطأ في بطولة المدارس، صار يتجنب الكرات العالية ويخشى أن يخذل زملاءه. لاحظت المدربة ندى ذلك، فبدأت معه تدريبًا مختلفًا؛ لم تطلب منه أن يكون مثاليًا، بل أن يتعلم كيف يعود إلى تركيزه بعد كل محاولة.'],
+      ['الفصل الثاني: الكرة التالية','في المباراة التالية، أخطأ سليم في تقدير كرة ثم وقف من جديد. سمع زميله يناديه، فرفع عينيه وتابع اللعب. جاءت فرصة أخرى، وهذه المرة تحرك في الوقت المناسب وأبعد الكرة. لم يكن الانتصار في التصدي وحده، بل في أنه لم يسمح للخطأ الأول أن يقرر بقية المباراة.']
+    ]},
+    {id:'away-match',title:'رحلة خارج الأرض',symbol:'🚌',description:'رحلة فريق ناشئ إلى مدينة بعيدة تكشف معنى الروح الجماعية.',chapters:[
+      ['الفصل الأول: الحافلة الزرقاء','انطلقت الحافلة قبل شروق الشمس، تحمل فريقًا لم يسافر من قبل إلى بطولة خارج محافظته. اختلف اللاعبون على الموسيقى والمقاعد، لكنهم اتفقوا على شيء واحد: العودة بذكرى تستحق الحكاية. حين تعطلت الحافلة قرب قرية صغيرة، ظنوا أن الرحلة انتهت قبل أن تبدأ، ثم اكتشفوا أن التأخير منحهم وقتًا للتعرف إلى بعضهم بعيدًا عن الملعب.'],
+      ['الفصل الثاني: فريق واحد','دخل الفريق المباراة متوترًا، لكنهم تذكروا كيف ساعد كل واحد الآخر في الرحلة. لم تكن خطتهم معقدة؛ تمريرات قصيرة، كلام واضح، وثقة في زميلهم. سواء انتهت المباراة بفوز أو خسارة، عادوا وهم يعرفون أن الفريق ليس أحد عشر لاعبًا فقط، بل مجموعة تختار أن تسند بعضها.']
+    ]}
+  ];
+  const playerStories = [
+    {title:'دييغو مارادونا',symbol:'🇦🇷',description:'حكاية موهبة استثنائية ومحطات صنعت اسمًا لا يُنسى.',parts:[['البداية','وُلد دييغو مارادونا في لانوس بالأرجنتين عام 1960، ونشأ في عائلة كبيرة وظروف بسيطة. ظهرت موهبته مبكرًا، وأصبح كرة القدم بالنسبة إليه طريقًا للحلم وفرصة لإظهار قدراته.'],['الصعود إلى النجومية','لفت الأنظار في فرق الناشئين ثم بدأ مسيرته الاحترافية مع أرجنتينوس جونيورز. عُرف بقدرته على التحكم بالكرة والمراوغة وصناعة الفرص، وانتقل لاحقًا إلى أندية كبرى في الأرجنتين وأوروبا.']]},
+    {title:'محمد أبو تريكة',symbol:'🇪🇬',description:'من بداياته في مصر إلى لحظات بقيت في ذاكرة جماهير الأهلي والمنتخب.',parts:[['البدايات','بدأ محمد أبو تريكة مسيرته في كرة القدم المصرية قبل انتقاله إلى الأهلي، حيث عرفه الجمهور بلمسته الهادئة ورؤيته للملعب وقدرته على صناعة اللعب.'],['محطات مؤثرة','حقق مع الأهلي والمنتخب المصري إنجازات مهمة، وبقيت أهدافه وتمريراته ومشاركاته في البطولات القارية جزءًا من ذاكرة جماهير كثيرة.']]},
+    {title:'رونالدينيو',symbol:'🇧🇷',description:'اللاعب الذي جعل المهارة والفرح جزءًا من صورته الكروية.',parts:[['طفولة مع الكرة','نشأ رونالدينيو في البرازيل، وارتبطت بداياته باللعب في الشوارع والصالات وبالكرة التي كانت جزءًا من حياته اليومية. ساعدته مهاراته الفنية على لفت الأنظار وهو صغير.'],['العالمية','تألق مع أندية أوروبية، وحقق ألقابًا كبرى، كما فاز بكأس العالم مع البرازيل عام 2002. اشتهر بلمساته المبتكرة وبقدرته على تحويل المواقف الصعبة إلى فرص ممتعة.']]},
+    {title:'أندريس إنييستا',symbol:'🇪🇸',description:'حكاية لاعب صنع الفارق بالهدوء والتمرير والقرارات الذكية.',parts:[['خطوات مبكرة','انضم إنييستا إلى أكاديمية برشلونة في سن صغيرة، وتعلم هناك أسلوبًا يعتمد على الاستحواذ والتحرك دون كرة والبحث عن المساحة.'],['لحظة تاريخية','كان جزءًا مهمًا من برشلونة ومن المنتخب الإسباني الذي حقق بطولة كأس العالم 2010، وسجل هدف الفوز في النهائي أمام هولندا.']]},
+    {title:'ديدييه دروغبا',symbol:'🇨🇮',description:'رحلة مهاجم قوي الحضور وصل إلى القمة بعد طريق طويل.',parts:[['الطريق إلى الاحتراف','وُلد دروغبا في ساحل العاج وقضى أجزاء من طفولته في فرنسا. تطورت مسيرته تدريجيًا، ولم يصل إلى الأضواء الكبرى في سن مبكرة مثل بعض النجوم.'],['أثره في الملعب','اشتهر بقوته البدنية وقدرته على الحسم في المباريات الكبيرة، وكان من أبرز لاعبي تشيلسي ومن قادة منتخب ساحل العاج.']]},
+    {title:'عمر مرموش',symbol:'🇪🇬',description:'محطات من رحلة لاعب مصري شق طريقه نحو المنافسة الأوروبية.',parts:[['البدايات','بدأ عمر مرموش مسيرته في مصر ثم انتقل إلى ألمانيا في سن مبكرة، حيث خاض تجربة تطوير طويلة بين فرق مختلفة قبل أن يثبت نفسه على مستوى أعلى.'],['التطور','اعتمد تطوره على السرعة والتحرك من دون كرة والقدرة على اللعب في أكثر من مركز هجومي. قصته تذكير بأن بناء المسيرة يحتاج إلى وقت وصبر واستمرار.']]}
+  ];
+  // قائمة البداية لبودكاست مع العارف؛ يمكن إضافة حكاية جديدة يوميًا من خلال window.RiwayatiDaily.add().
+  const dailyStories = [
+    {title:'حكاية دييغو مارادونا',symbol:'📖',description:'الحلقة الأولى: النشأة والبدايات والصعود إلى عالم الكرة.',parts:[['الطفل الذي أحب الكرة','وُلد دييغو أرماندو مارادونا في 30 أكتوبر 1960 في لانوس قرب بوينس آيرس بالأرجنتين، ونشأ في عائلة كبيرة. منذ طفولته، كانت الكرة رفيقته الدائمة، وظهرت موهبته في سن مبكرة. انضم إلى فريق الناشئين المعروف باسم «لوس سيبوليتاس»، وبدأ اسمه ينتشر بفضل مهارته في التحكم بالكرة والمراوغة.'],['أول خطوة احترافية','ظهر مارادونا مع الفريق الأول لأرجنتينوس جونيورز قبل أن ينتقل إلى بوكا جونيورز. لاحقًا خاض تجارب أوروبية مع برشلونة ثم نابولي، حيث أصبح نجمًا بارزًا. قصته مليئة بالإنجازات والتحديات، ولذلك سنعرضها على حلقات مع الفصل بين الوقائع التاريخية والتقديم الأدبي.']]}
+  ];
+  function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
+  function renderCards(containerId,items,openFn){const root=document.getElementById(containerId);if(!root)return;root.innerHTML='';items.forEach((item,i)=>{const card=el('article','riwayati-story-card');card.append(el('div','story-symbol',item.symbol||'⚽'));card.append(el('h3','',item.title));card.append(el('p','',item.description));const b=el('button','', 'اقرأ الآن');b.type='button';b.addEventListener('click',()=>openFn(i));card.append(b);root.append(card);});}
+  function setupReader(items,ids,mode){
+    const get=id=>document.getElementById(id);
+    let currentItem=0,currentPart=0;
+    const title=get(ids.title),intro=get(ids.intro),select=get(ids.select),partTitle=get(ids.partTitle),partText=get(ids.partText),reader=get(ids.reader);
+    function show(i,p){currentItem=i;const item=items[i];currentPart=Math.max(0,Math.min(p,item.parts.length-1));title.textContent=item.title;intro.textContent=item.description||'';select.innerHTML='';item.parts.forEach((part,j)=>{const o=document.createElement('option');o.value=j;o.textContent=part[0];select.append(o);});select.value=String(currentPart);partTitle.textContent=item.parts[currentPart][0];partText.textContent=item.parts[currentPart][1];partText.classList.add('riwayati-reader-text');reader.hidden=false;reader.scrollIntoView({behavior:'smooth',block:'start'});}
+    select.addEventListener('change',()=>show(currentItem,Number(select.value)));
+    get(ids.prev).addEventListener('click',()=>show(currentItem,currentPart-1));
+    get(ids.next).addEventListener('click',()=>show(currentItem,currentPart+1));
+    return show;
+  }
+  const openFootball=setupReader(footballStories,{reader:'footballNovelReader',title:'footballNovelTitle',intro:'footballNovelDescription',select:'footballNovelChapterSelect',partTitle:'footballNovelChapterTitle',partText:'footballNovelChapterText',prev:'footballNovelPrev',next:'footballNovelNext'});
+  const openPlayer=setupReader(playerStories,{reader:'playerPodcastReader',title:'playerPodcastTitle',intro:'playerPodcastIntro',select:'playerPodcastChapterSelect',partTitle:'playerPodcastChapterTitle',partText:'playerPodcastChapterText',prev:'playerPodcastPrev',next:'playerPodcastNext'});
+  const openDaily=setupReader(dailyStories,{reader:'alArefReader',title:'alArefTitle',intro:'alArefIntro',select:'alArefChapterSelect',partTitle:'alArefChapterTitle',partText:'alArefChapterText',prev:'alArefPrev',next:'alArefNext'});
+  renderCards('footballNovelsGrid',footballStories,openFootball);
+  renderCards('playerPodcastGrid',playerStories,openPlayer);
+  renderCards('alArefDailyGrid',dailyStories,openDaily);
+  const search=document.getElementById('footballNovelSearch');
+  search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();const filtered=footballStories.filter(s=>(s.title+' '+s.description).toLowerCase().includes(q));renderCards('footballNovelsGrid',filtered,i=>openFootball(footballStories.indexOf(filtered[i])));});
+  window.RiwayatiDaily=window.RiwayatiDaily||{};
+  window.RiwayatiDaily.add=function(story){if(!story||!story.title||!Array.isArray(story.parts)||!story.parts.length)return false;dailyStories.unshift(story);renderCards('alArefDailyGrid',dailyStories,openDaily);return true;};
+  window.RiwayatiFootball=window.RiwayatiFootball||{};
+  window.RiwayatiFootball.add=function(story){if(!story||!story.title||!Array.isArray(story.chapters)||!story.chapters.length)return false;footballStories.push({id:'new-'+Date.now(),title:story.title,symbol:story.symbol||'⚽',description:story.description||'',chapters:story.chapters.map(c=>[c.title,c.text])});renderCards('footballNovelsGrid',footballStories,openFootball);return true;};
+})();
+</script>
+
+<!-- ============================================================
+     RIWAYATI ADD-ON SYSTEM — لا تحذف الأقسام القديمة.
+     لإضافة محتوى جديد من أي كود لاحق استخدم:
+     Riwayati.add({ section: 'football', title: 'عنوان', description: 'وصف', content: '<p>النص...</p>' });
+     الأقسام المتاحة: football | playerPodcast | podcast
+     ============================================================ -->
+<style>
+.riwayati-content-slot{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px;margin-top:16px}
+.riwayati-added-card{background:var(--panel,#fffaf1);border:1px solid var(--line,#e6d3bc);border-radius:16px;padding:16px;min-width:0;overflow-wrap:anywhere}
+.riwayati-added-card h3{margin:0 0 8px;color:var(--gold2,#9b4d20)}
+.riwayati-added-card p{margin:6px 0;color:var(--text,#38251b)}
+.riwayati-added-card .riwayati-added-body{margin-top:10px}
+</style>
+<script>
+(function(){
+  'use strict';
+  const allowed = new Set(['football','playerPodcast','podcast']);
+  function make(tag, cls, value){
+    const el=document.createElement(tag);
+    if(cls) el.className=cls;
+    if(value!==undefined && value!==null) el.textContent=String(value);
+    return el;
+  }
+  window.Riwayati = window.Riwayati || {};
+  window.Riwayati.add = function(item){
+    if(!item || !allowed.has(item.section)){
+      console.warn('Riwayati.add: اختر section من football أو playerPodcast أو podcast');
+      return false;
+    }
+    const slot=document.getElementById('riwayati-slot-'+item.section);
+    if(!slot){ console.warn('Riwayati.add: مكان الإضافة غير موجود'); return false; }
+    const card=make('article','riwayati-added-card');
+    if(item.title) card.appendChild(make('h3','',item.title));
+    if(item.description) card.appendChild(make('p','',item.description));
+    if(item.content){
+      const body=make('div','riwayati-added-body');
+      // content is treated as HTML so trusted, authored markup can be supplied.
+      // Do not pass untrusted visitor input into this field.
+      body.innerHTML=String(item.content);
+      card.appendChild(body);
+    }
+    slot.appendChild(card);
+    return card;
+  };
+})();
+</script>
 
 </body>
 </html>
